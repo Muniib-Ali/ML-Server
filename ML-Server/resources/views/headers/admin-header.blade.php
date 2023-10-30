@@ -10,9 +10,9 @@
     <div class = "header">
     <a href = "{{url('Users')}}">Users</a>
 
-    @auth
+    @if(auth()->user())
         <a href =  "{{url('logout')}}"> Sign out </a>
-    @endauth
+    @endif
     </div>
 
     <div class = "main-body">

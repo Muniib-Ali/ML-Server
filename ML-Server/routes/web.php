@@ -27,6 +27,15 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/admin', function () {
+    return view('admin-home');
+});
+
+Route::get('/', function () {
+    return view('admin-home');
+});
+
+
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LogoutController::class, 'logout']);
+Route::get('/logout', [LogoutController::class, 'logout']);
 
