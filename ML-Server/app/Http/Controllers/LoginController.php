@@ -12,6 +12,7 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
+        
         echo "successfully signed in";
 
     }

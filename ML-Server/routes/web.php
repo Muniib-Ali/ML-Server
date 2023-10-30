@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,5 @@ Route::get('/login', function () {
 });
 
 Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LogoutController::class, 'logout']);
+
