@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegistrationController extends Controller
@@ -24,7 +25,12 @@ class RegistrationController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        echo 'worked';
+        $credentials = $request->only('slack', 'password');
+ 
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            return redirect()->intended('/admin');
+        }
 
     }
 }

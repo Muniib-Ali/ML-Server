@@ -10,6 +10,6 @@ class LogoutController extends Controller
     public function logout(){
         Auth::logout();
         
-        echo "successfully signed out";
+        return redirect()->intended('/login');
     }
 }

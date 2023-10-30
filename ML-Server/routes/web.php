@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/create-account', function () {
+Route::get('/createaccount', function () {
     return view('create-account');
 });
 

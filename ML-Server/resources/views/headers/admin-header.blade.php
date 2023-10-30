@@ -10,11 +10,15 @@
     <div class = "header">
     <a href = "{{url('Users')}}">Users</a>
 
-    @if(auth()->user())
-        <a href =  "{{url('logout')}}"> Sign out </a>
-    @endif
-    </div>
+    @auth
+    <a href =  "{{url('logout')}}"> Sign out </a>
+    @endauth
 
+    @guest
+    <a href =  "{{url('login')}}"> Login </a>
+    <a href =  "{{url('createaccount')}}"> Sign up </a>
+
+    @endguest
     <div class = "main-body">
     @yield('body')
     </div>
