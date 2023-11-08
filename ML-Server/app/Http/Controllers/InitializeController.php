@@ -7,8 +7,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class RegistrationController extends Controller
+class InitializeController extends Controller
 {
+    //
+    public function initialize(Request $request){
+
+    }
+
+    public function show(){
+        return view('initialize');
+    }
+
+
     public function registrate(Request $request){
 
         $this->validate($request, [
@@ -23,9 +33,8 @@ class RegistrationController extends Controller
             'email' => $request->email,
             'slack' => $request->slack,
             'password' => Hash::make($request->password),
-            'credits' => 500
+            'is_admin' => true
         ]);
-
         $credentials = $request->only('slack', 'password');
  
         if (Auth::attempt($credentials)) {
