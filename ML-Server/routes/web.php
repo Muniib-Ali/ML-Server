@@ -43,8 +43,10 @@ Route::middleware(['initializeSite'])->group(function(){
     Route::get('/logout', [LogoutController::class, 'logout']);
 });
 
+Route::middleware(['initializeSiteOnce'])->group(function(){
 
-Route::get('/initialize', [InitializeController::class, 'show']);
-Route::post('/initialize', [InitializeController::class, 'registrate']);
+    Route::get('/initialize', [InitializeController::class, 'show']);
+    Route::post('/initialize', [InitializeController::class, 'registrate']);
 
 
+});
