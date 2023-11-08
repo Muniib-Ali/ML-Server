@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InitializeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -38,6 +39,7 @@ Route::middleware(['initializeSite'])->group(function(){
         return view('admin-home');
     });
     
+    Route::get('/users', [AdminController::class, 'listUsers']);
     
     Route::post('/login', [LoginController::class, 'login']);
     Route::get('/logout', [LogoutController::class, 'logout']);
