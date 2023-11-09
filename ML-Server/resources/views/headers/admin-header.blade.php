@@ -9,6 +9,7 @@
 <body>
     <div class = "header">
     <a href = "{{url('users')}}">Users</a>
+    <a href = "{{url('requests')}}">Requests</a>
 
     @auth
     <a href =  "{{url('logout')}}"> Sign out </a>

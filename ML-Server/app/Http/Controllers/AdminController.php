@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CreditRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,5 +23,43 @@ class AdminController extends Controller
 
 
         return redirect()->intended('/users');
+    }
+
+
+    public function listRequests(){
+        $requests = CreditRequest::all();
+        return view ('list-credit-requests', ['requests' => $requests]);
+    }
+
+    public function acceptRequest($id){
+
+        $requests = CreditRequest::all();
+        $request = $requests->find($id);
+
+        $users = User::all();
+        $user = $users->find($request->user_id);
+
+
+        $user->credits = $user->credits + $request->value;
+        $user->save();
+
+        $request->setAttribute('status', 'approved');
+        $request->save();
+
+        return redirect()->intended('/requests', ['requests' => $requests]);
+
+
+    }
+
+    public function declineRequest($id){
+        $requests = CreditRequest::all();
+        $request = $requests->find($id);
+        $request->setAttribute('status', 'rejected');
+        $request->save();
+        return redirect()->intended('/requests')->with('requests', $requests);
+
+
+
+
     }
 }

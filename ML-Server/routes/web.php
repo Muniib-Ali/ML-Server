@@ -54,6 +54,12 @@ Route::middleware(['initializeSite'])->group(function(){
     Route::post('/creditrequest', [UserController::class, 'requestCredits']);
 
     Route::post('/admin/change-status/{id}', [AdminController::class, 'changeStatus']);
+    Route::get('requests' , [AdminController::class, 'listRequests']);
+
+    Route::post('requests/change-status/{id}/accept', [AdminController::class, 'acceptRequest']);
+    Route::post('requests/change-status/{id}/decline', [AdminController::class, 'declineRequest']);
+
+
 });
 
 Route::middleware(['initializeSiteOnce'])->group(function(){
