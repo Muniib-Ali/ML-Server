@@ -25,7 +25,7 @@ class RegistrationController extends Controller
             'password' => Hash::make($request->password),
             'credits' => 500
         ]);
-
+        
         $credentials = $request->only('slack', 'password');
  
         if (Auth::attempt($credentials)) {
