@@ -12,4 +12,15 @@ class AdminController extends Controller
         return view('listusers', ['users' => $users]);
 
     }
+
+    public function changeStatus($id){
+        $users = User::all();
+        $user = $users->find($id);
+
+        $user->is_admin = !$user->is_admin;
+        $user ->save();
+
+
+        return redirect()->intended('/users');
+    }
 }

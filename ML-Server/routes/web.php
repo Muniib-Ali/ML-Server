@@ -5,6 +5,7 @@ use App\Http\Controllers\InitializeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,13 +37,23 @@ Route::middleware(['initializeSite'])->group(function(){
     });
     
     Route::get('/', function () {
-        return view('admin-home');
+        return view('user-home');
     });
+
+    Route::get('/home', function () {
+        return view('user-home');
+    });
+
     
     Route::get('/users', [AdminController::class, 'listUsers']);
     
     Route::post('/login', [LoginController::class, 'login']);
     Route::get('/logout', [LogoutController::class, 'logout']);
+
+    Route::get('/credits', [UserController::class, 'show']);
+    Route::post('/creditrequest', [UserController::class, 'requestCredits']);
+
+    Route::post('/admin/change-status/{id}', [AdminController::class, 'changeStatus']);
 });
 
 Route::middleware(['initializeSiteOnce'])->group(function(){

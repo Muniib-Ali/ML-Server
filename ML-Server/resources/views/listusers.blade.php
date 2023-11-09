@@ -15,6 +15,7 @@
                 <th>Slack</th>
                 <th>Credits</th>
                 <th>Admin Status</th>
+                <th>Change Status</th>
             </tr>
 
         </thead>
@@ -30,6 +31,13 @@
                     @else
                     <td>false</td>
                     @endif
+                    <td>
+                        <form action = "admin/change-status/{{$user->id}}" method = "post">
+                            @csrf
+                            <button type = "submit">{{$user->is_admin? 'Make User' : 'Make Admin'}}</button>
+                        </form>
+
+                    </td>
                 </tr>
             @endforeach
         </tbody>

@@ -1,5 +1,4 @@
-@extends('headers.admin-header')
-@section('body')
+
 <!DOCTYPE html>
 <html>
 <header>
@@ -23,4 +22,3 @@
     </div>
 </body>
 </html>
-@endsection
