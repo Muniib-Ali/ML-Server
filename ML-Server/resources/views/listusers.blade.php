@@ -7,7 +7,7 @@
 </header>
 
 <body>
-    <table>
+    <table class = "users-table">
         <thead>
             <tr>
                 <th>ID</th>

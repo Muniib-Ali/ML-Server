@@ -6,8 +6,8 @@
 </header>
 
 <body>
-    <div class = "create-account">
-        <form method = "POST" action = "/createaccount">
+    <div class = "sign-up">
+        <form method = "POST" action = "/createaccount" class = "registration-form">
             @csrf
             <label for = "name">Name: </label>
             <input type = "text"  placeholder="name" name = "name">

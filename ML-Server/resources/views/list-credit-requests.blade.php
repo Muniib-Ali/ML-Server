@@ -7,7 +7,7 @@
 </header>
 
 <body>
-    <table>
+    <table class = "requests-table">
         <thead>
             <tr>
                 <th>ID</th>

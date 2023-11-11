@@ -6,7 +6,7 @@
 
 <body>
     <div class = "create-account">
-        <form method = "POST" action = "/initialize">
+        <form method = "POST" action = "/initialize" class = "registration-form">
             @csrf
             <p>iojdwijajoidwa</p>
             <label for = "name">Name: </label>

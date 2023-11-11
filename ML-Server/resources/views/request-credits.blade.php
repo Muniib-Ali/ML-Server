@@ -7,7 +7,7 @@
 </header>
 
 <body>
-    <form class = "credit-form" action = "/creditrequest" method = "POST">
+    <form class = "request-form" action = "/creditrequest" method = "POST" >
         @csrf
         <label for = "credits"> How many credits?(10-200): </label>
         <input type = "number" min = "10" max = "200" placeholder = "credits" name = "credits"> 

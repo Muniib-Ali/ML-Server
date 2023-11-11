@@ -7,7 +7,7 @@
 
 <body>
     <div class = "login">
-        <form method = "POST" action = "/login">
+        <form method = "POST" action = "/login" clas = "login-form">
             @csrf
 
             <label for = "slack"> Slack ID: </label>
