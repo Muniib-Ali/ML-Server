@@ -66,6 +66,8 @@ Route::middleware(['adminauth'])->group(function(){
 
     Route::get('/resources', [AdminController::class, 'showResourceRequest']);
 
+    Route::post('/resourcegroup', [AdminController::class, 'createResourceGroup']);
+
     
 
 });
