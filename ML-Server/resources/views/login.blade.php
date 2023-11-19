@@ -1,24 +1,26 @@
-
 <!DOCTYPE html>
 <html>
+<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+
 <header>
 
 </header>
 
-<body>
-    <div class = "login">
-        <form method = "POST" action = "/login" clas = "login-form">
+<body class = "guest-layout">
+    <div class="login">
+        <form method="POST" action="/login" class="login-form">
             @csrf
 
-            <label for = "slack"> Slack ID: </label>
-            <input type = "text" placeholder = "slack" name = "slack"> 
+            <label for="slack"> Slack ID </label>
+            <input type="text" placeholder="slack" name="slack">
 
-            <label for = "password"> Password: </label>
-            <input type = "password" placeholder = "password" name  = "password">
+            <label for="password"> Password </label>
+            <input type="password" placeholder="password" name="password">
 
-            <button type = "submit"> Login </button>
+            <button type="submit"> Login </button>
 
         </form>
     </div>
 </body>
+
 </html>

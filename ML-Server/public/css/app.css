@@ -13,6 +13,11 @@
 
 }
 
+.guest-layout{
+    margin: 0rem;
+
+}
+
 .header-links{
     display: flex;
     flex-direction: row;
@@ -21,8 +26,10 @@
     color: white;
     justify-content: space-between;
     padding: 1rem;
+    
 
 }
+
 
 .header-links>.header-right>a{
     color: white;
@@ -39,6 +46,76 @@
 
 .website-name, .credits{
     margin: 0;
+}
+
+.login-form, .resource-group-form, .resource-form{
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    justify-content: center;
+    border-style: solid;
+    border-color: #424141;
+    padding: 2rem;
+
+
+    
+}
+
+.login-form> input, .resource-group-form > input, .resource-form > input, .resource-form> select{
+    margin-bottom: 0.5rem;
+
+}
+.login-form>button, .resource-group-form>button, .resource-form>button{
+    margin-top: 1rem;
+}
+
+.login, .resource-group, .resource{
+    display: flex;
+    justify-content: center;
+}
+
+.registration{
+    display: flex;
+    justify-content: center;
+
+}
+.registration-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30rem;
+    border-style:solid;
+    border-color: #424141;
+    padding: 2rem;
+}
+
+.registration-form>input{
+    margin-bottom: 0.5rem;
+}
+
+.registration-form>button{
+    margin-top: 1rem;
+}
+
+.request{
+    display: flex;
+    justify-content: center;
+}
+
+.request-form{
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    justify-content: center;
+    border-style:solid;
+    border-color: #424141;
+    padding: 2rem;
+
+}
+
+.request-form>input{
+    margin-bottom: 1rem;
+
 }
 
 

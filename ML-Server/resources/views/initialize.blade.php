@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+
 <header>
 
 </header>
 
-<body>
-    <div class = "create-account">
+<body class = "guest-layout">
+    <div class = "registration">
         <form method = "POST" action = "/initialize" class = "registration-form">
             @csrf
             <p>Initialize page</p>

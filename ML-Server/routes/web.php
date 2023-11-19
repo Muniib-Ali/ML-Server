@@ -76,7 +76,7 @@ Route::middleware(['adminauth'])->group(function(){
 });
 
 Route::middleware(['guestauth'])->group(function(){
-    Route::get('/createaccount', function () {
+    Route::get('/signup', function () {
         return view('create-account');
     });
     
