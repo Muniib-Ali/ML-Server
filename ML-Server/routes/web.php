@@ -18,9 +18,57 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::middleware(['initializeSite'])->group(function(){
+
+Route::middleware(['initializeSiteOnce'])->group(function(){
+
+    Route::get('/initialize', [InitializeController::class, 'show']);
+    Route::post('/initialize', [InitializeController::class, 'registrate']);
 
 
+});
+
+
+
+Route::middleware(['userauth'])->group(function(){
+
+    Route::get('/', function () {
+        return view('user-home');
+    });
+
+    Route::get('/home', function () {
+        return view('user-home');
+    });
+
+    Route::get('/credits', [UserController::class, 'show']);
+    Route::post('/creditrequest', [UserController::class, 'requestCredits']);
+    Route::get('/logout', [LogoutController::class, 'logout']);
+
+
+});
+
+
+Route::middleware(['adminauth'])->group(function(){
+
+    Route::get('/admin', function () {
+        return view('admin-home');
+    });
+    
+
+    
+    Route::get('/users', [AdminController::class, 'listUsers']);
+
+    Route::post('/admin/change-status/{id}', [AdminController::class, 'changeStatus']);
+    Route::get('requests' , [AdminController::class, 'listRequests']);
+
+    Route::post('requests/change-status/{id}/accept', [AdminController::class, 'acceptRequest']);
+    Route::post('requests/change-status/{id}/decline', [AdminController::class, 'declineRequest']);
+    Route::get('/logout', [LogoutController::class, 'logout']);
+
+    
+
+});
+
+Route::middleware(['guestauth'])->group(function(){
     Route::get('/createaccount', function () {
         return view('create-account');
     });
@@ -32,40 +80,14 @@ Route::middleware(['initializeSite'])->group(function(){
         return view('login');
     });
     
-    Route::get('/admin', function () {
-        return view('admin-home');
-    });
-    
-    Route::get('/', function () {
-        return view('user-home');
-    });
-
-    Route::get('/home', function () {
-        return view('user-home');
-    });
-
-    
-    Route::get('/users', [AdminController::class, 'listUsers']);
-    
+   
     Route::post('/login', [LoginController::class, 'login']);
-    Route::get('/logout', [LogoutController::class, 'logout']);
-
-    Route::get('/credits', [UserController::class, 'show']);
-    Route::post('/creditrequest', [UserController::class, 'requestCredits']);
-
-    Route::post('/admin/change-status/{id}', [AdminController::class, 'changeStatus']);
-    Route::get('requests' , [AdminController::class, 'listRequests']);
-
-    Route::post('requests/change-status/{id}/accept', [AdminController::class, 'acceptRequest']);
-    Route::post('requests/change-status/{id}/decline', [AdminController::class, 'declineRequest']);
-
+   
+    
 
 });
 
-Route::middleware(['initializeSiteOnce'])->group(function(){
-
-    Route::get('/initialize', [InitializeController::class, 'show']);
-    Route::post('/initialize', [InitializeController::class, 'registrate']);
+Route::get('/logout', [LogoutController::class, 'logout']);
 
 
-});
+

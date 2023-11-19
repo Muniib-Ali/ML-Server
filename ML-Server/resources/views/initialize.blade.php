@@ -8,7 +8,7 @@
     <div class = "create-account">
         <form method = "POST" action = "/initialize" class = "registration-form">
             @csrf
-            <p>iojdwijajoidwa</p>
+            <p>Initialize page</p>
             <label for = "name">Name: </label>
             <input type = "text"  placeholder="name" name = "name">
 

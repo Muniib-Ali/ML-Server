@@ -9,6 +9,7 @@ class LogoutController extends Controller
 {
     public function logout(){
         Auth::logout();
+        auth()->logout();
         
         return redirect()->intended('/login');
     }
