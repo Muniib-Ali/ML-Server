@@ -20,6 +20,7 @@
         </thead>
         <tbody>
             @foreach ($requests as $request )
+            @if($request -> status == "pending")
                 <tr>
                     <td>{{$request-> id}}</td>
                     <td>{{$request -> user_id}}</td>
@@ -39,6 +40,32 @@
                         
                     </td>
                 </tr>
+            @endif
+            @endforeach
+        </tbody>
+    <table>
+
+    <table class = "completed-requests-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User ID</th>
+                <th>Amount requested</th>
+                <th>Status</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach ($requests as $request )
+            @if($request -> status != "pending")
+                <tr>
+                    <td>{{$request-> id}}</td>
+                    <td>{{$request -> user_id}}</td>
+                    <td>{{$request -> value}}</td>
+                    <td>{{$request -> status}}</td>
+
+                </tr>
+            @endif
             @endforeach
         </tbody>
     <table>

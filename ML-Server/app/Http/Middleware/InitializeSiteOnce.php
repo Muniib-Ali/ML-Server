@@ -17,7 +17,7 @@ class InitializeSiteOnce
     public function handle(Request $request, Closure $next): Response
     {
         if(User::count() != 0 ){
-            return redirect('/login');
+            return back();
         }
         return $next($request);
     }

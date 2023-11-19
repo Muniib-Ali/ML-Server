@@ -46,7 +46,7 @@ class AdminController extends Controller
         $request->setAttribute('status', 'approved');
         $request->save();
 
-        return redirect()->intended('/requests', ['requests' => $requests]);
+        return redirect()->intended('/requests');
 
 
     }
@@ -56,7 +56,7 @@ class AdminController extends Controller
         $request = $requests->find($id);
         $request->setAttribute('status', 'rejected');
         $request->save();
-        return redirect()->intended('/requests')->with('requests', $requests);
+        return redirect()->intended('/requests');
 
 
 
