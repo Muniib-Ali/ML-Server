@@ -1,28 +1,41 @@
 .user-layout {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin: 0rem;
 
 }
 
 .admin-layout {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin: 0rem;
+
 
 }
 
 .header-links{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 0;
+    background-color: #424141;
+    color: white;
+    justify-content: space-between;
+    padding: 1rem;
 
 }
 
-.header-links>a{
-    background-color: blueviolet;
+.header-links>.header-right>a{
+    color: white;
+    padding-left: 0.3rem;
+    text-decoration: none;
+    
 
 }
 
+.header-links>.header-right>p{
+    display: inline;
 
+}
 
 .website-name, .credits{
     margin: 0;

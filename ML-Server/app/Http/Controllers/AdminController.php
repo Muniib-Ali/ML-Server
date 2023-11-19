@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CreditRequest;
+use App\Models\Resource;
 use App\Models\ResourceGroup;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -65,7 +66,8 @@ class AdminController extends Controller
     }
 
     public function showResourceRequest(){
-        return view('create-resources');
+        $resource_group = ResourceGroup::all();
+        return view('create-resources', ['resource_group' => $resource_group]);
     }
 
     public function createResourceGroup(Request $request){
@@ -75,6 +77,22 @@ class AdminController extends Controller
 
         ResourceGroup::create([
             'resource_group' => $request->resource_group
+        ]);
+
+        return redirect()-> intended('/resources');
+
+    }
+
+
+    public function createResource(Request $request){
+        $this->validate($request, [
+            'name' => ['required','string', 'max:255', 'unique:resource']
+        ]);
+        
+        Resource::create([
+            'resource_group_id' => $request->resource_group,
+            'name' => $request->name,
+            'cost' => $request->value
         ]);
 
         return redirect()-> intended('/resources');
