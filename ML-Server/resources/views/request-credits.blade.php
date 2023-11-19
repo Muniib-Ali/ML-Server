@@ -1,5 +1,5 @@
 @extends('headers.user-header')
-@section('body')
+@section('page')
 <!DOCTYPE html>
 <html>
 <header>

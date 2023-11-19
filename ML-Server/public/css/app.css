@@ -1,0 +1,36 @@
+.user-layout {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.admin-layout {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.header-links{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+}
+
+.header-links>a{
+    background-color: blueviolet;
+
+}
+
+
+
+.website-name, .credits{
+    margin: 0;
+}
+
+
+
+
+
+
+

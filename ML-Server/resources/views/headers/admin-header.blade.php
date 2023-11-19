@@ -4,10 +4,12 @@
 
 <head>
     <meta charset="utf-8">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
 </head>
 
-<body>
-    <div class = "header">
+<body class = "admin-layout">
+    <div class = "header-links">
+    <p class = "website-name">ML Management System</p>
     <a href = "{{url('users')}}">Users</a>
     <a href = "{{url('requests')}}">Requests</a>
 
@@ -20,8 +22,9 @@
     <a href =  "{{url('createaccount')}}"> Sign up </a>
 
     @endguest
+    </div>
     <div class = "main-body">
-    @yield('body')
+    @yield('page')
     </div>
 </body>
 </html>
