@@ -64,6 +64,8 @@ Route::middleware(['adminauth'])->group(function(){
     Route::post('requests/change-status/{id}/decline', [AdminController::class, 'declineRequest']);
     Route::get('/logout', [LogoutController::class, 'logout']);
 
+    Route::get('/resources', [AdminController::class, 'showResourceRequest']);
+
     
 
 });

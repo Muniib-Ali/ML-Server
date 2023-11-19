@@ -12,6 +12,9 @@
     <p class = "website-name">ML Management System</p>
     <a href = "{{url('users')}}">Users</a>
     <a href = "{{url('requests')}}">Requests</a>
+    <a href = "{{url('resources')}}">Resources</a>
+
+
 
     @auth
     <a href =  "{{url('logout')}}"> Sign out </a>

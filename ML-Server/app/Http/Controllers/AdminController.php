@@ -62,4 +62,8 @@ class AdminController extends Controller
 
 
     }
+
+    public function showResourceRequest(){
+        return view('create-resources');
+    }
 }
