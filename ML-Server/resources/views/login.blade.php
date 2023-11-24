@@ -18,6 +18,7 @@
             <input type="password" placeholder="password" name="password">
 
             <button type="submit"> Login </button>
+            <a href = "/signup" class = "account-links">Don't have an account? Create one here!</a>
 
         </form>
     </div>

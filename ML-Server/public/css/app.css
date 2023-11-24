@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     margin: 0rem;
-
 }
 
 .admin-layout {
@@ -15,7 +14,6 @@
 
 .guest-layout{
     margin: 0rem;
-
 }
 
 .header-links{
@@ -56,9 +54,8 @@
     border-style: solid;
     border-color: #424141;
     padding: 2rem;
+    border-radius: 1.5rem;
 
-
-    
 }
 
 .login-form> input, .resource-group-form > input, .resource-form > input, .resource-form> select{
@@ -72,11 +69,14 @@
 .login, .resource-group, .resource{
     display: flex;
     justify-content: center;
+    padding-top: 10rem;  
 }
 
 .registration{
     display: flex;
     justify-content: center;
+    padding-top: 10rem;  
+
 
 }
 .registration-form{
@@ -86,6 +86,7 @@
     width: 30rem;
     border-style:solid;
     border-color: #424141;
+    border-radius: 1.5rem;
     padding: 2rem;
 }
 
@@ -100,6 +101,8 @@
 .request{
     display: flex;
     justify-content: center;
+    padding-top: 10rem;  
+
 }
 
 .request-form{
@@ -109,6 +112,7 @@
     justify-content: center;
     border-style:solid;
     border-color: #424141;
+    border-radius: 1rem;
     padding: 2rem;
 
 }

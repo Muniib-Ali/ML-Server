@@ -27,6 +27,7 @@
             <input type = "password" placeholder=" re-enter password" name = "password_confirmation">
 
             <button type = "submit"> Create Account </button>
+            <a href = "/login" class = "account-links">Already have an account? Login here!</a>
 
         </form>
     </div>
