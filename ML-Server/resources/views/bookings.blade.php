@@ -23,8 +23,8 @@
 
             </select>
             <label for="start">Start</label>
-            <input type="date" id="start-day" name="start-day" required>
-            <select id  = "start-time" name  = "start-time">
+            <input type="date" id="start_date" name="start_date" required>
+            <select id  = "start_time" name  = "start_time">
                 <option value = 00> 00 </option>
                 <option value = 01> 01 </option>
                 <option value = 02> 02 </option>
@@ -52,10 +52,10 @@
 
             </select>
 
-            <label for="start-day">End</label>
-            <input type="date" id="end-day" name="end-day" required>
+            <label for="end_day">End</label>
+            <input type="date" id="end_date" name="end_date" required>
             
-            <select id  = "end-time" name  = "end-time">
+            <select id  = "end_time" name  = "end_time">
             <option value = 00> 00 </option>
                 <option value = 01> 01 </option>
                 <option value = 02> 02 </option>

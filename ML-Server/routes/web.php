@@ -45,6 +45,8 @@ Route::middleware(['userauth'])->group(function(){
     Route::get('/logout', [LogoutController::class, 'logout']);
     Route::get('/bookings', [BookingsController::class, 'show']);
     Route::get('/get-resources-by-group', [BookingsController::class, 'getResourcesByGroup']);
+    Route::post('/bookings', [BookingsController::class, 'book']);
+
 
 
 });
