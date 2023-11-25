@@ -16,6 +16,7 @@
         <div class="header-right">
 
             <p class="credits">Credits: {{auth()->user()->credits}} </p>
+            <a href="{{url('bookings')}}">Bookings</a>
             <a href="{{url('credits')}}">Request credits</a>
             <a href="{{url('logout')}}"> Sign out </a>
 

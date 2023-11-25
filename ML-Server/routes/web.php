@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\InitializeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -42,6 +43,8 @@ Route::middleware(['userauth'])->group(function(){
     Route::get('/credits', [UserController::class, 'show']);
     Route::post('/creditrequest', [UserController::class, 'requestCredits']);
     Route::get('/logout', [LogoutController::class, 'logout']);
+    Route::get('/bookings', [BookingsController::class, 'show']);
+    Route::get('/get-resources-by-group', [BookingsController::class, 'getResourcesByGroup']);
 
 
 });
