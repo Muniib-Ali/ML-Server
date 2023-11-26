@@ -25,6 +25,7 @@ class InitializeController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'max:255', 'email', 'unique:users'],
             'slack' => ['required', 'string', 'max:255', 'unique:users'],
+            'notes' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'confirmed']
         ]);
 
@@ -32,6 +33,7 @@ class InitializeController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'slack' => $request->slack,
+            'notes' => $request->notes,
             'password' => Hash::make($request->password),
             'is_admin' => true
         ]);

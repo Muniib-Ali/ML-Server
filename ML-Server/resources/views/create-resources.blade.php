@@ -33,7 +33,7 @@
             <label for="name"> Resource</label>
             <input type="text" placeholder="Resource" name="name">
 
-            <label for="value"> Credit cost:</label>
+            <label for="value"> Credit cost(per hour):</label>
             <input type="number" min="10" max="200" placeholder="Cost" name="value">
 
 

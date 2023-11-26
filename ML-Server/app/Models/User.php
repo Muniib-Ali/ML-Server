@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'slack',
         'credits',
-        'is_admin'
+        'is_admin',
+        'notes'
     ];
 
     /**

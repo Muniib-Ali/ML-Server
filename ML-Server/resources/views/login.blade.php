@@ -11,8 +11,8 @@
         <form method="POST" action="/login" class="login-form">
             @csrf
 
-            <label for="slack"> Slack ID </label>
-            <input type="text" placeholder="slack" name="slack">
+            <label for="email"> email </label>
+            <input type="text" placeholder="email" name="email">
 
             <label for="password"> Password </label>
             <input type="password" placeholder="password" name="password">

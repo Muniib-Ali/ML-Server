@@ -20,6 +20,9 @@
             <label for = "slack"> Slack:  </label>
             <input type = "text"  placeholder = "slack" name = "slack">
 
+            <label for = "notes"> Notes: </label>
+            <input type = "text"  placeholder = "notes" name = "notes">
+
             <label for = "password"> Password: </label>
             <input type = "password" placeholder = "password" name  = "password">
 
