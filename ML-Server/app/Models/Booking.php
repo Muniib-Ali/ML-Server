@@ -16,6 +16,7 @@ class Booking extends Model
         'end_date',
         'start_time',
         'end_time',
-        'notes'
+        'notes',
+        'resource_name'
     ];
 }

@@ -17,7 +17,9 @@ class BookingsController extends Controller
 
         $resource_groups = ResourceGroup::all();
         $resources = Resource::all();
-        return view('bookings', ['resource_groups' => $resource_groups], ['resources' => $resources]);
+        $bookings = Booking::all();
+
+        return view('bookings', compact('bookings', 'resources', 'resource_groups'));
     }
 
     public function getResourcesByGroup(Request $request)
@@ -39,6 +41,8 @@ class BookingsController extends Controller
         $notes = $request->input('notes');
         $authstatus = Auth::user();
         $user = $authstatus->id;
+
+        $resource1 = Resource::where('id', $resourceId)->value('name');
 
         $conflictingBookings = Booking::where('resource_group_id', $resourceGroupId)
             ->where('resource_id', $resourceId)
@@ -86,7 +90,8 @@ class BookingsController extends Controller
             'start_time' => $startTime,
             'end_date' => $endDate,
             'end_time' => $endTime,
-            'notes' =>  $notes
+            'notes' =>  $notes,
+            'resource_name' => $resource1
         ]);
 
 

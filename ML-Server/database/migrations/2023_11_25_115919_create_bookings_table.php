@@ -13,6 +13,7 @@ return new class extends Migration
             $table->unsignedBigInteger('resource_group_id');
             $table->unsignedBigInteger('resource_id');
             $table->unsignedBigInteger('user_id');
+            $table->text('resource_name');
             $table->date('start_date');
             $table->integer('start_time');
             $table->date('end_date');

@@ -11,6 +11,8 @@ else
     echo "env file exists."
 fi
 
+npm install --save @fullcalendar/core @fullcalendar/daygrid @fullcalendar/timegrid
+
 php artisan migrate
 php artisan key:generate
 php artisan cache:clear
