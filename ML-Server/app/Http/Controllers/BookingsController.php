@@ -45,16 +45,35 @@ class BookingsController extends Controller
         $resource1 = Resource::where('id', $resourceId)->value('name');
 
         $conflictingBookings = Booking::where('resource_group_id', $resourceGroupId)
-            ->where('resource_id', $resourceId)
-            ->where(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
-                $query->where('end_time', '>', $startTime)
-                    ->where('start_time', '<', $endTime)
-                    ->where('start_date', '<=', $endDate)
-                    ->where('end_date', '>=', $startDate);
-            })
-            ->get();
-
-        if ($conflictingBookings->count() > 0) {
+    ->where('resource_id', $resourceId)
+    ->where(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
+        $query->where('end_time', '>', $startTime)
+            ->where('start_time', '<', $endTime)
+            ->where('start_date', '<=', $endDate)
+            ->where('end_date', '>=', $startDate);
+    })
+    ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
+        $query->where('end_time', '>', $startTime)
+            ->where('start_time', '>', $endTime)
+            ->where('start_date', '<', $endDate)
+            ->where('end_date', '>=', $endDate);
+    })
+    ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
+        $query->where('start_date', '=', $startDate)
+            ->where('start_time', '<', $startTime)
+            ->where('end_date', '>', $endDate);
+    })
+    ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
+        $query->where('start_time', '>', $startTime)
+            ->where('start_date','=', $startDate)
+            ->where('end_date', '>', $endDate)
+            ->where('start_time' , '<', $endTime);
+    })
+    
+    ->get();
+        
+        
+            if ($conflictingBookings->count() > 0) {
             return redirect()->back()->withErrors(['error' => 'Your bookings is overlapping with pre existing bookings!']);
         }
 
@@ -98,3 +117,4 @@ class BookingsController extends Controller
         return redirect()->intended('/home');
     }
 }
+
