@@ -108,7 +108,10 @@
         .then(response => response.json())
         .then(data => {
           data.forEach(resource => {
-            addOption(resourceSelect, resource.id, resource.name);
+            if(resource.is_enabled){
+              addOption(resourceSelect, resource.id, resource.name);
+
+            }
           });
         })
         .catch(error => console.error('Error:', error));

@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('resource', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('resource_group_id');
+            $table->string('resource_group_name');
             $table->foreign('resource_group_id')->references('id')->on('resource_group')->onDelete('cascade');
             $table->string('name');
             $table->integer('cost');
+            $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });
     }

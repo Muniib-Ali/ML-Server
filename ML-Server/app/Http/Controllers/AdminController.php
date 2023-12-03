@@ -67,7 +67,8 @@ class AdminController extends Controller
 
     public function showResourceRequest(){
         $resource_group = ResourceGroup::all();
-        return view('create-resources', ['resource_group' => $resource_group]);
+        $resources = Resource::all();
+        return view('create-resources', compact('resource_group','resources' ));
     }
 
     public function createResourceGroup(Request $request){
@@ -89,13 +90,27 @@ class AdminController extends Controller
             'name' => ['required','string', 'max:255', 'unique:resource']
         ]);
         
+        $resource_groups = ResourceGroup::all();
+        $resource_group = $resource_groups->find($request->resource_group);
         Resource::create([
             'resource_group_id' => $request->resource_group,
+            'resource_group_name' => $resource_group->resource_group,
             'name' => $request->name,
             'cost' => $request->value
         ]);
 
         return redirect()-> intended('/resources');
 
+    }
+
+    public function changeResourceStatus($id){
+        $resources = Resource::all();
+        $resource = $resources->find($id);
+
+        $resource->is_enabled = !$resource->is_enabled;
+        $resource ->save();
+
+
+        return redirect()->intended('/resources');
     }
 }

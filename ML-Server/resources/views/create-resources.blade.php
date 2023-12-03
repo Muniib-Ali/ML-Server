@@ -29,7 +29,6 @@
                 <option value="{{$resource_group_member->id}}">{{$resource_group_member->resource_group}}</option>
                 @endforeach
             </select>
-
             <label for="name"> Resource</label>
             <input type="text" placeholder="Resource" name="name">
 
@@ -41,6 +40,43 @@
             <button type="submit"> Create resource</button>
 
         </form>
+    </div>
+
+    <div class="resources-table">
+        <table class="resources-table">
+            <thead>
+                <tr>
+                    <th>Resource Group</th>
+                    <th>Resource</th>
+                    <th>Cost</th>
+                    <th>Change Status</th>
+                    <th>Delete</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach ($resources as $resource )
+                <tr>
+                    <td>{{$resource-> resource_group_name}}</td>
+                    <td>{{$resource-> name}}</td>
+                    <td>{{$resource-> cost}}</td>
+                    <td>
+                        <form action="admin/resource/change-status/{{$resource->id}}" method="post">
+                            @csrf
+                            <button type="submit">{{$resource->is_enabled? 'Disable' : 'Enable'}}</button>
+                        </form>
+
+                    </td>
+                    <td>
+                        <form action="admin/resource/delete/{{$resource->id}}" method="post">
+                            @csrf
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+            <table>
     </div>
 </body>
 

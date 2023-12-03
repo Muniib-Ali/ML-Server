@@ -12,7 +12,8 @@ class Resource extends Model
     protected $fillable = [
         'resource_group_id',
         'name',
-        'cost'
+        'cost',
+        'resource_group_name'
         
     ];
 }

@@ -69,7 +69,11 @@ class BookingsController extends Controller
             ->where('end_date', '>', $endDate)
             ->where('start_time' , '<', $endTime);
     })
-    
+    ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
+        $query->where('end_date', '=', $endDate)
+            ->where('start_date','>', $startDate)
+            ->where('start_time', '<', $endTime);
+    })
     ->get();
         
         
