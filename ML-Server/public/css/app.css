@@ -126,6 +126,29 @@
     max-height: 44rem;
 }
 
+.change-resources{
+    display: flex;
+    justify-content: center;
+    padding-top: 10rem;  
+    
+}
+
+
+
+.change-resources > table,.resources-table>thead > tr>th,.resources-table> tbody >tr> td {
+    border: solid  #424141;
+    border-collapse: collapse;
+    padding: 1rem;
+
+    border-radius: 1.5rem;
+
+
+  }
+  
+
+   
+
+
 
 
 

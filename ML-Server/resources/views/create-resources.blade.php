@@ -42,9 +42,9 @@
         </form>
     </div>
 
-    <div class="resources-table">
+    <div class="change-resources">
         <table class="resources-table">
-            <thead>
+                <thead>
                 <tr>
                     <th>Resource Group</th>
                     <th>Resource</th>
@@ -53,8 +53,8 @@
                     <th>Delete</th>
                 </tr>
 
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 @foreach ($resources as $resource )
                 <tr>
                     <td>{{$resource-> resource_group_name}}</td>
@@ -75,8 +75,8 @@
                     </td>
                 </tr>
                 @endforeach
-            </tbody>
-            <table>
+                </tbody>
+        </table>
     </div>
 </body>
 
