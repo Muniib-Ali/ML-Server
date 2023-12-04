@@ -126,14 +126,14 @@
     max-height: 44rem;
 }
 
-.change-resources{
+.change-resources, .list-users, .requests-container, .completed-requests-container{
     display: flex;
     justify-content: center;
     padding-top: 10rem;  
     
 }
 
-
+  
 
 .change-resources > table,.resources-table>thead > tr>th,.resources-table> tbody >tr> td {
     border: solid  #424141;
@@ -144,6 +144,40 @@
 
 
   }
+
+  .list-users > table,.users-table>thead > tr>th,.users-table> tbody >tr> td {
+    border: solid  #424141;
+    border-collapse: collapse;
+    padding: 1rem;
+
+    border-radius: 1.5rem;
+
+
+  }
+
+
+  .completed-requests-container > table,.completed-requests-table>thead > tr>th,.completed-requests-table> tbody >tr> td {
+    border: solid  #424141;
+    border-collapse: collapse;
+    padding: 1rem;
+
+    border-radius: 1.5rem;
+
+
+  }
+
+  .requests-container > table,.requests-table>thead > tr>th,.requests-table> tbody >tr> td {
+    border: solid  #424141;
+    border-collapse: collapse;
+    padding: 1rem;
+
+    border-radius: 1.5rem;
+
+
+  }
+
+
+
   
 
    

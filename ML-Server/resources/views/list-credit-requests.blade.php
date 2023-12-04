@@ -7,6 +7,7 @@
 </header>
 
 <body>
+    <div class = "requests-container">
     <table class = "requests-table">
         <thead>
             <tr>
@@ -43,8 +44,10 @@
             @endif
             @endforeach
         </tbody>
-    <table>
+</table>
+    </div>
 
+    <div class  = "completed-requests-container">
     <table class = "completed-requests-table">
         <thead>
             <tr>
@@ -68,7 +71,8 @@
             @endif
             @endforeach
         </tbody>
-    <table>
+</table>
+    </div>
 </body>
 </html>
 @endsection

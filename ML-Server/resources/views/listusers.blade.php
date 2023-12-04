@@ -7,6 +7,7 @@
 </header>
 
 <body>
+    <div class = "list-users">
     <table class = "users-table">
         <thead>
             <tr>
@@ -42,6 +43,7 @@
             @endforeach
         </tbody>
     <table>
+    </table>
 </body>
 </html>
 @endsection
