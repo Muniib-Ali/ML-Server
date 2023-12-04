@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\CreditRequest;
 use App\Models\Resource;
 use App\Models\ResourceGroup;
@@ -111,6 +112,12 @@ class AdminController extends Controller
         $resource ->save();
 
 
+        return redirect()->intended('/resources');
+    }
+
+    public function deleteResource($id){
+        Booking::where('resource_id', $id)->delete();
+        Resource::where('id', $id)->delete();
         return redirect()->intended('/resources');
     }
 }

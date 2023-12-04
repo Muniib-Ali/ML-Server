@@ -65,7 +65,7 @@ Route::middleware(['adminauth'])->group(function(){
     Route::post('/admin/change-status/{id}', [AdminController::class, 'changeStatus']);
 
     Route::post('/admin/resource/change-status/{id}', [AdminController::class, 'changeResourceStatus']);
-
+    Route::post('/admin/resource/delete/{id}', [AdminController::class, 'deleteResource']);
     Route::get('requests' , [AdminController::class, 'listRequests']);
 
     Route::post('requests/change-status/{id}/accept', [AdminController::class, 'acceptRequest']);
