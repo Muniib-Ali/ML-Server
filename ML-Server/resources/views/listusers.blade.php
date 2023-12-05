@@ -22,6 +22,7 @@
         </thead>
         <tbody>
             @foreach ($users as $user )
+            @if($user->id != 1)
                 <tr>
                     <td>{{$user-> id}}</td>
                     <td>{{$user-> email}}</td>
@@ -40,6 +41,7 @@
 
                     </td>
                 </tr>
+            @endif
             @endforeach
         </tbody>
     <table>
