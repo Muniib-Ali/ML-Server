@@ -14,7 +14,7 @@ class LoginController extends Controller
             // Authentication passed...
             return redirect()->intended('/home');
         } else {
-            return redirect('/login');
+            return redirect()->back()->withErrors(['error' => 'Email or Password are incorrect']);
         }
 
     }

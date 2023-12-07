@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 
 <header>
@@ -7,6 +8,13 @@
 </header>
 
 <body class = "guest-layout">
+    @if($errors->any())
+    <div class="alert alert-danger">
+    @foreach ($errors->all() as $error)
+        {{ $error }}
+    @endforeach
+    </div>
+    @endif
     <div class="login">
         <form method="POST" action="/login" class="login-form">
             @csrf
