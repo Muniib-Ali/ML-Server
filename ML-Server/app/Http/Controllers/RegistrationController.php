@@ -16,7 +16,7 @@ class RegistrationController extends Controller
             'email' => ['required', 'string', 'max:255', 'email', 'unique:users'],
             'slack' => ['required', 'string', 'max:255', 'unique:users'],
             'notes' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'confirmed']
+            'password' => ['required', 'string', 'min:8' ,'confirmed']
         ]);
 
         User::create([

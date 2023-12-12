@@ -19,7 +19,7 @@
         <form method="POST" action="/login" class="login-form">
             @csrf
 
-            <label for="email"> email </label>
+            <label for="email"> Email </label>
             <input type="text" placeholder="email" name="email">
 
             <label for="password"> Password </label>

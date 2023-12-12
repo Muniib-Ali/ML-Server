@@ -58,11 +58,11 @@
 
 }
 
-.login-form> input, .resource-group-form > input, .resource-form > input, .resource-form> select{
+.resource-group-form > input, .resource-form > input, .resource-form> select{
     margin-bottom: 0.5rem;
 
 }
-.login-form>button, .resource-group-form>button, .resource-form>button{
+.resource-group-form>button, .resource-form>button{
     margin-top: 1rem;
 }
 
@@ -90,13 +90,24 @@
     padding: 2rem;
 }
 
-.registration-form>input{
+.registration-form>input, .login-form> input{
     margin-bottom: 0.5rem;
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+
 }
 
-.registration-form>button{
+.registration-form>button, .login-form>button{
     margin-top: 1rem;
+    padding: 0.2rem;
+    border-radius: 0.2rem; 
 }
+.registration-form>button:hover, .login-form>button:hover{
+    background-color: #c3c4c7;
+    
+}
+
+
 
 .request{
     display: flex;
@@ -183,6 +194,20 @@
     padding: 1rem;
     display: flex;
     justify-content: center;
+}
+
+.registration-error-message{
+    color:#721c24;
+    border-style: solid;
+    background-color:#f8d7da;
+    border-color: #721c24;
+    border-width: 0.1rem;
+    margin-bottom: 0.5rem;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+
+    
+
 }
   
 
