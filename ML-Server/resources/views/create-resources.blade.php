@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <header>
 
@@ -13,7 +14,7 @@
         <form class="resource-group-form" action="/createresourcegroup" method="POST">
             @csrf
             <label for="resource_group"> Resource group name: </label>
-            <input type="text" placeholder="Resource group" name="resource_group">
+            <input type="text" placeholder="Resource group" name="resource_group" required>
 
 
             <button type="submit"> Create resource group </button>
@@ -21,19 +22,20 @@
         </form>
     </div>
     <div class="resource">
-        <form class="resource-form" action="/createresource" method="POST">
+        <form class="resource-form"  method="POST" action="/createresource">
             @csrf
             <label for="resource_group"> Resource group:</label>
-            <select name="resource_group">
+            <select name="resource_group" id = "resources-select">
+                <option value = "" disabled selected>Choose an option</option>
                 @foreach ($resource_group as $resource_group_member)
                 <option value="{{$resource_group_member->id}}">{{$resource_group_member->resource_group}}</option>
                 @endforeach
             </select>
             <label for="name"> Resource</label>
-            <input type="text" placeholder="Resource" name="name">
+            <input type="text" placeholder="Resource" name="name" required>
 
             <label for="value"> Credit cost(per hour):</label>
-            <input type="number" min="10" max="200" placeholder="Cost" name="value">
+            <input type="number" min="10" max="200" placeholder="Cost" name="value" required>
 
 
 
@@ -81,4 +83,7 @@
 </body>
 
 </html>
+
+
+
 @endsection

@@ -87,6 +87,10 @@ class AdminController extends Controller
 
 
     public function createResource(Request $request){
+
+        if($request->resource_group == ""){
+            return redirect()->back()->withErrors(['error' => 'Select a valid value']);
+        }
         $this->validate($request, [
             'name' => ['required','string', 'max:255', 'unique:resource']
         ]);
