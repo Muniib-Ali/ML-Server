@@ -46,6 +46,8 @@ Route::middleware(['userauth'])->group(function(){
     Route::get('/bookings', [BookingsController::class, 'show']);
     Route::get('/get-resources-by-group', [BookingsController::class, 'getResourcesByGroup']);
     Route::post('/bookings', [BookingsController::class, 'book']);
+    Route::get('/list-bookings', [BookingsController::class, 'showBookings']);
+    Route::post('/delete-booking/{id}', [BookingsController::class, 'deleteBooking']);
 
 
 

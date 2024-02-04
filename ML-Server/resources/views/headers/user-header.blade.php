@@ -17,22 +17,31 @@
         <div class="header-right">
 
             <p class="credits">Credits: {{auth()->user()->credits}} </p>
-            <a href="{{url('bookings')}}">Bookings</a>
+            <a href="{{url('bookings')}}">Create booking</a>
+            <a href="{{url('list-bookings')}}">Bookings</a>
             <a href="{{url('credits')}}">Request credits</a>
             <a href="{{url('logout')}}"> Sign out </a>
 
 
-            
+
         </div>
     </div>
     <div class="main-body">
-    @if($errors->any())
-    <div class="alert alert-danger">
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
-    </div>
-@endif
+        @if($errors->any())
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+            {{ $error }}
+            @endforeach
+        </div>
+        @endif
+
+
+        @if(session('success'))
+        <div class="alert alert-success">
+        {{ session('success') }}
+        </div>
+        @endif
+
         @yield('page')
     </div>
 </body>

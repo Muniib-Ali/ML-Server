@@ -19,4 +19,10 @@ class Booking extends Model
         'notes',
         'resource_name'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+
+    }
 }

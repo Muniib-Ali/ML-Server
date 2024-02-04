@@ -44,6 +44,11 @@ class BookingsController extends Controller
 
         $resource1 = Resource::where('id', $resourceId)->value('name');
 
+        if($startDate == $endDate && $startTime >= $endTime){
+            return redirect()->back()->withErrors(['error' => 'End time must be greater than start time!']);
+
+        }
+
         $conflictingBookings = Booking::where('resource_group_id', $resourceGroupId)
     ->where('resource_id', $resourceId)
     ->where(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
@@ -124,6 +129,22 @@ class BookingsController extends Controller
 
 
         return redirect()->intended('/home');
+    }
+
+    public function showBookings(request $request){
+        $authstatus = Auth::user();
+        $user = $authstatus->id;
+        $bookings = $authstatus->bookings;
+        return view('list-bookings', compact('bookings'));
+
+    }
+
+    public function deleteBooking($bookingId){
+        $booking  = Booking::where('id', $bookingId);
+        $booking->delete();
+        return redirect()->back()->with('success', 'Booking was successfully cancelled');
+
+        
     }
 }
 
