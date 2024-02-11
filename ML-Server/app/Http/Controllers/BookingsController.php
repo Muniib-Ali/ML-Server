@@ -56,40 +56,51 @@ class BookingsController extends Controller
         }
 
         $conflictingBookings = Booking::where('resource_group_id', $resourceGroupId)
-            ->where('resource_id', $resourceId)
-            ->where(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
-                $query->where('end_time', '>', $startTime)
+            ->where(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
+                $query->where('resource_id', $resourceId)
+                    ->where('end_time', '>', $startTime)
                     ->where('start_time', '<', $endTime)
                     ->where('start_date', '<=', $endDate)
                     ->where('end_date', '>=', $startDate);
             })
-            ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
-                $query->where('end_time', '>', $startTime)
+            ->orWhere(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
+                $query->where('resource_id', $resourceId)
+                    ->where('end_time', '>', $startTime)
                     ->where('start_time', '>', $endTime)
                     ->where('start_date', '<', $endDate)
                     ->where('end_date', '>=', $endDate);
             })
-            ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
-                $query->where('start_date', '=', $startDate)
+            ->orWhere(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
+                $query->where('resource_id', $resourceId)
+                    ->where('start_date', '=', $startDate)
                     ->where('start_time', '<', $startTime)
                     ->where('end_date', '>', $endDate);
             })
-            ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
-                $query->where('start_time', '>', $startTime)
+            ->orWhere(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
+                $query->where('resource_id', $resourceId)
+                    ->where('start_time', '>', $startTime)
                     ->where('start_date', '=', $startDate)
                     ->where('end_date', '>', $endDate)
                     ->where('start_time', '<', $endTime);
             })
-            ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
-                $query->where('end_date', '=', $endDate)
+            ->orWhere(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
+                $query->where('resource_id', $resourceId)
+                    ->where('end_date', '=', $endDate)
                     ->where('start_date', '>', $startDate)
                     ->where('start_time', '<', $endTime);
             })
-            ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
-                $query->where('end_date', '=', $startDate)
-                    ->where('end_time', '>', $startTime);
+            ->orWhere(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
+                $query->where('resource_id', $resourceId)
+                    ->where('end_date', '=', $startDate)
+                    ->where('end_time', '>', $startTime)
+                    ->where('start_date', '<', $startDate);
             })
-
+            ->orWhere(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
+                $query->where('resource_id', $resourceId)
+                    ->where('start_date', '=', $startDate)
+                    ->where('start_time', '>', $startTime)
+                    ->where('end_date', '<', $endDate);
+            })
             ->get();
 
 
@@ -132,14 +143,13 @@ class BookingsController extends Controller
             'resource_name' => $resource1
         ]);
 
-
+        
         $message = "New booking created!";
         $this->slackService->sendMessage($message, '#testing-bot');
 
         $userId = $user1->slack;
-        $message = "Your booking has been confirmed!";
+        $message = "Booking for " . $user1->name . " from " . $startTime . " on " . $startDate . " to " . $endTime . " on " . $endDate . " has been confirmed!";   
         $this->slackService->sendMessage($message, $userId);
-
         return redirect()->intended('/home');
     }
 
