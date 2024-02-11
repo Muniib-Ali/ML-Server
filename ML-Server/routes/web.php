@@ -48,6 +48,10 @@ Route::middleware(['userauth'])->group(function(){
     Route::post('/bookings', [BookingsController::class, 'book']);
     Route::get('/list-bookings', [BookingsController::class, 'showBookings']);
     Route::post('/delete-booking/{id}', [BookingsController::class, 'deleteBooking']);
+    Route::get('/update-account', [UserController::class, 'showUpdate']);
+    Route::post('/update-account', [UserController::class, 'updateAccount']);
+
+
 
 
 
