@@ -9,9 +9,16 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\SlackService;
 
 class BookingsController extends Controller
 {
+    protected $slackService;
+
+    public function __construct(SlackService $slackService)
+    {
+        $this->slackService = $slackService;
+    }
     public function show()
     {
 
@@ -44,58 +51,57 @@ class BookingsController extends Controller
 
         $resource1 = Resource::where('id', $resourceId)->value('name');
 
-        if($startDate == $endDate && $startTime >= $endTime){
+        if ($startDate == $endDate && $startTime >= $endTime) {
             return redirect()->back()->withErrors(['error' => 'End time must be greater than start time!']);
-
         }
 
         $conflictingBookings = Booking::where('resource_group_id', $resourceGroupId)
-    ->where('resource_id', $resourceId)
-    ->where(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
-        $query->where('end_time', '>', $startTime)
-            ->where('start_time', '<', $endTime)
-            ->where('start_date', '<=', $endDate)
-            ->where('end_date', '>=', $startDate);
-    })
-    ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
-        $query->where('end_time', '>', $startTime)
-            ->where('start_time', '>', $endTime)
-            ->where('start_date', '<', $endDate)
-            ->where('end_date', '>=', $endDate);
-    })
-    ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
-        $query->where('start_date', '=', $startDate)
-            ->where('start_time', '<', $startTime)
-            ->where('end_date', '>', $endDate);
-    })
-    ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
-        $query->where('start_time', '>', $startTime)
-            ->where('start_date','=', $startDate)
-            ->where('end_date', '>', $endDate)
-            ->where('start_time' , '<', $endTime);
-    })
-    ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
-        $query->where('end_date', '=', $endDate)
-            ->where('start_date','>', $startDate)
-            ->where('start_time', '<', $endTime);
-    })
-    ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
-        $query->where('end_date', '=', $startDate)
-            ->where('end_time','>', $startTime);
-    })
-    
-    ->get();
-        
-        
-            if ($conflictingBookings->count() > 0) {
+            ->where('resource_id', $resourceId)
+            ->where(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
+                $query->where('end_time', '>', $startTime)
+                    ->where('start_time', '<', $endTime)
+                    ->where('start_date', '<=', $endDate)
+                    ->where('end_date', '>=', $startDate);
+            })
+            ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
+                $query->where('end_time', '>', $startTime)
+                    ->where('start_time', '>', $endTime)
+                    ->where('start_date', '<', $endDate)
+                    ->where('end_date', '>=', $endDate);
+            })
+            ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
+                $query->where('start_date', '=', $startDate)
+                    ->where('start_time', '<', $startTime)
+                    ->where('end_date', '>', $endDate);
+            })
+            ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
+                $query->where('start_time', '>', $startTime)
+                    ->where('start_date', '=', $startDate)
+                    ->where('end_date', '>', $endDate)
+                    ->where('start_time', '<', $endTime);
+            })
+            ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
+                $query->where('end_date', '=', $endDate)
+                    ->where('start_date', '>', $startDate)
+                    ->where('start_time', '<', $endTime);
+            })
+            ->orWhere(function ($query) use ($startTime, $endTime, $startDate, $endDate) {
+                $query->where('end_date', '=', $startDate)
+                    ->where('end_time', '>', $startTime);
+            })
+
+            ->get();
+
+
+        if ($conflictingBookings->count() > 0) {
             return redirect()->back()->withErrors(['error' => 'Your bookings is overlapping with pre existing bookings!']);
         }
 
-        
+
         $startTimeRaw = Carbon::parse($request->input('start_date') . ' ' . $request->input('start_time') . ':00');
         $endTimeRaw = Carbon::parse($request->input('end_date') . ' ' . $request->input('end_time') . ':00');
 
-        
+
         $hoursDifference = $endTimeRaw->diffInHours($startTimeRaw);
 
         $resources = Resource::all();
@@ -106,9 +112,8 @@ class BookingsController extends Controller
         $users = User::all();
         $user1 = $users->find($authstatus->id);
 
-        if($user1->credits < $overall_cost){
+        if ($user1->credits < $overall_cost) {
             return redirect()->back()->withErrors(['error' => 'You do not have enough credits to book this session!']);
-
         }
         $user1->credits = $user1->credits - $overall_cost;
         $user1->save();
@@ -128,23 +133,28 @@ class BookingsController extends Controller
         ]);
 
 
+        $message = "New booking created!";
+        $this->slackService->sendMessage($message, '#testing-bot');
+
+        $userId = $user1->slack;
+        $message = "Your booking has been confirmed!";
+        $this->slackService->sendMessage($message, $userId);
+
         return redirect()->intended('/home');
     }
 
-    public function showBookings(request $request){
+    public function showBookings(request $request)
+    {
         $authstatus = Auth::user();
         $user = $authstatus->id;
         $bookings = $authstatus->bookings;
         return view('list-bookings', compact('bookings'));
-
     }
 
-    public function deleteBooking($bookingId){
+    public function deleteBooking($bookingId)
+    {
         $booking  = Booking::where('id', $bookingId);
         $booking->delete();
         return redirect()->back()->with('success', 'Booking was successfully cancelled');
-
-        
     }
 }
-
