@@ -143,14 +143,25 @@ class BookingsController extends Controller
             'resource_name' => $resource1
         ]);
 
-        
-        $message = "New booking created!";
-        $this->slackService->sendMessage($message, '#testing-bot');
+        /** 
+         * $message = "New booking created!";
+        * 
+         *  $this->slackService->sendMessage($message, '#testing-bot');
 
-        $userId = $user1->slack;
-        $message = "Booking for " . $user1->name . " from " . $startTime . " on " . $startDate . " to " . $endTime . " on " . $endDate . " has been confirmed!";   
-        $this->slackService->sendMessage($message, $userId);
-        return redirect()->intended('/home');
+        * 
+         *  $userId = $user1->slack;
+         * 
+         * $message = "Booking for " . $user1->name . " from " . $startTime . " on " . $startDate . " to " . $endTime . " on " . $endDate . " has been confirmed!";   
+         * 
+         * $this->slackService->sendMessage($message, $userId);
+         * 
+         * return redirect()->intended('/home');
+         * 
+         * 
+         * 
+         * 
+        */
+       
     }
 
     public function showBookings(request $request)
