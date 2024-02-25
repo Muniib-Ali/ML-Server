@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
@@ -22,7 +23,9 @@ class LoginController extends Controller
 
     public function showResetPage()
     {
+    
         return view('password-reset-request');
+
     }
 
     public function sendPasswordResetEmail(Request $request)
