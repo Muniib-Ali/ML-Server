@@ -20,4 +20,8 @@ php artisan config:clear
 php artisan route:clear
 
 php artisan serve --port=$PORT --host=0.0.0.0 --env=.env
+
+
+php artisan schedule:work
+
 exec docker-php-entrypoint "$@"
