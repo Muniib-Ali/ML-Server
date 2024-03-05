@@ -164,4 +164,43 @@ class BookingsController extends Controller
         $booking->delete();
         return redirect()->back()->with('success', 'Booking was successfully cancelled');
     }
+
+    public function jsonApi(){
+        $currentDateTime = Carbon::now();
+
+        $ongoingBookingsQuery1 = \App\Models\Booking::where('start_date', '<', $currentDateTime->toDateString())
+            ->where('end_date', '=', $currentDateTime->toDateString())
+            ->where('end_time', '>', $currentDateTime->hour)
+            ->get();
+
+        $ongoingBookingsQuery2 = \App\Models\Booking::where('start_date', '=', $currentDateTime->toDateString())
+            ->where('end_date', '=', $currentDateTime->toDateString())
+            ->where('start_time', '<', $currentDateTime->hour)
+            ->where('end_time', '>', $currentDateTime->hour)
+            ->get();
+
+        $ongoingBookingsQuery3 = \App\Models\Booking::where('start_date', '=', $currentDateTime->toDateString())
+            ->where('end_date', '>', $currentDateTime->toDateString())
+            ->where('start_time', '<', $currentDateTime->hour)
+            ->get();
+
+        $ongoingBookingsQuery4 = \App\Models\Booking::where('start_date', '<', $currentDateTime->toDateString())
+            ->where('end_date', '>', $currentDateTime->toDateString())
+            ->get();
+
+        // Combine the results of all queries
+        $ongoingBookings = $ongoingBookingsQuery1
+            ->merge($ongoingBookingsQuery2)
+            ->merge($ongoingBookingsQuery3)
+            ->merge($ongoingBookingsQuery4)
+            ->unique('id');
+
+
+
+        $bookingsArray = $ongoingBookings->toArray();
+
+        return response()->json($bookingsArray);
+
+        
+    }
 }

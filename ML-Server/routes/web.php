@@ -151,4 +151,7 @@ Route::middleware(['guestauth'])->group(function(){
 Route::get('/logout', [LogoutController::class, 'logout']);
 
 
+Route::get('/get-currentbookings', [BookingsController::class, 'jsonApi']);
+
+
 
