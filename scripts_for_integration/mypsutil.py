@@ -24,7 +24,6 @@ def get_usage():
             continue
         if start is False:
             continue
-      
         fields = line.split()
         num_fields = len(fields)
         if num_fields > 12:
@@ -32,7 +31,6 @@ def get_usage():
             num_fields = len(fields)
         if num_fields < 12:
             continue
-     
         userid = fields[field_indices['USER']]
         if userid not in users.keys():
             users[userid] = {}
@@ -49,9 +47,10 @@ def get_usage():
 
 if __name__ == "__main__":
     usage = get_usage()
-    with open("cpu.json", "w") as json_file:
-        json.dump(usage, json_file, indent=4)
+    usage_dict = {user: {'CPU': value['CPU'], 'MEM': value['MEM']} for user, value in usage.items()}
 
-    
+    with open("cpu.json", "w") as json_file:
+        json.dump(usage_dict, json_file, indent=4)
+
     for user, value in usage.items():
         print(f"{str(user).ljust(10)}: CPU:{value['CPU']} MEM:{value['MEM']}")
