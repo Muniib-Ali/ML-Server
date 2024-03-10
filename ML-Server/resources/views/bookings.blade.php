@@ -12,9 +12,9 @@
 
 </header>
 
-<body>
+<body class = "bookings-page">
   <div class="bookings-request">
-    <form class="bookings-form" action="/bookings" method="POST">
+  <form class="bookings-form" action="/bookings" method="POST">
       @csrf
       <label for="resource_group">Select Resource Group:</label>
       <select id="resource_group" name="resource_group" onchange="updateResources()">
@@ -26,7 +26,7 @@
       <select id="resource" name="resource">
 
       </select>
-      <label for="start">Start</label>
+      <label for="start">Start:</label>
       <input type="date" id="start_date" name="start_date" required>
       <select id="start_time" name="start_time">
         <option value=00> 00 </option>
@@ -56,7 +56,7 @@
 
       </select>
 
-      <label for="end_day">End</label>
+      <label for="end_day">End:</label>
       <input type="date" id="end_date" name="end_date" required>
 
       <select id="end_time" name="end_time">
@@ -86,14 +86,22 @@
         <option value=23> 23 </option>
       </select>
 
-      <label for="notes"> Notes </label>
+      <label for="notes"> Notes: </label>
       <input type="text-box" placeholder="Notes" name="notes">
 
       <button type=" submit">Submit</button>
 
     </form>
+    
   </div>
+
+
+
+  <div class = "calendar-container">
+
   <div id="calendar">
+  </div>
+  
 
   </div>
 

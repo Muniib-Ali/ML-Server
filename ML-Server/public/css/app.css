@@ -46,7 +46,7 @@
     margin: 0;
 }
 
-.login-form, .resource-group-form, .resource-form{
+.login-form, .resource-group-form, .resource-form, .bookings-form{
     display: flex;
     flex-direction: column;
     width: 30rem;
@@ -58,11 +58,11 @@
 
 }
 
-.resource-group-form > input, .resource-form > input, .resource-form> select{
+.resource-group-form > input, .resource-form > input, .resource-form> select ,.bookings-form>select, .bookings-form>input{
     margin-bottom: 0.5rem;
 
 }
-.resource-group-form>button, .resource-form>button{
+.resource-group-form>button, .resource-form>button, .bookings-form>button{
     margin-top: 1rem;
 }
 
@@ -71,6 +71,8 @@
     justify-content: center;
     padding-top: 10rem;  
 }
+
+
 
 .registration{
     display: flex;
@@ -133,9 +135,6 @@
 
 }
 
-#calendar{
-    max-height: 44rem;
-}
 
 .listed-bookings,.change-resources, .list-users, .requests-container, .completed-requests-container{
     display: flex;
@@ -225,7 +224,38 @@
     
 
 }
-  
+
+.bookings-page{
+    display: flex
+
+}
+
+.bookings-request{
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+    
+}
+
+.calendar-container{
+    display: flex;
+    justify-content: center;
+    
+}
+
+#calendar{
+    max-height: 48rem;
+    width: 70%;
+    border-style: solid;
+    border-color: #424141;
+    padding: 2rem;
+    border-radius: 1.5rem;
+
+
+
+
+}
+
 
 
 
