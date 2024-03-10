@@ -13,7 +13,8 @@ class Resource extends Model
         'resource_group_id',
         'name',
         'cost',
-        'resource_group_name'
+        'resource_group_name',
+        'threshold'
         
     ];
 }
