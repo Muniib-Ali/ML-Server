@@ -51,67 +51,53 @@ class BookingsController extends Controller
 
         $resource1 = Resource::where('id', $resourceId)->value('name');
 
-        if ($startDate == $endDate && $startTime >= $endTime) {
+        $compareStartDate = Carbon::parse($startDate . ' ' . str_pad($startTime, 2, '0', STR_PAD_LEFT) . ':00:00')->format('Y-m-d H:i:s');
+
+
+        $compareEndDate = Carbon::parse($endDate . ' ' . str_pad($endTime, 2, '0', STR_PAD_LEFT) . ':00:00')->format('Y-m-d H:i:s');
+
+
+        
+
+        if ($compareStartDate >= $compareEndDate) {
             return redirect()->back()->withErrors(['error' => 'End time must be greater than start time!']);
         }
 
-        $conflictingBookings = Booking::where('resource_group_id', $resourceGroupId)
-            ->where(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
-                $query->where('resource_id', $resourceId)
-                    ->where('end_time', '>', $startTime)
-                    ->where('start_time', '<', $endTime)
-                    ->where('start_date', '<=', $endDate)
-                    ->where('end_date', '>=', $startDate);
-            })
-            ->orWhere(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
-                $query->where('resource_id', $resourceId)
-                    ->where('end_time', '>', $startTime)
-                    ->where('start_time', '>', $endTime)
-                    ->where('start_date', '<', $endDate)
-                    ->where('end_date', '>=', $endDate);
-            })
-            ->orWhere(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
-                $query->where('resource_id', $resourceId)
-                    ->where('start_date', '=', $startDate)
-                    ->where('start_time', '<', $startTime)
-                    ->where('end_date', '>', $endDate);
-            })
-            ->orWhere(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
-                $query->where('resource_id', $resourceId)
-                    ->where('start_time', '>', $startTime)
-                    ->where('start_date', '=', $startDate)
-                    ->where('end_date', '>', $endDate)
-                    ->where('start_time', '<', $endTime);
-            })
-            ->orWhere(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
-                $query->where('resource_id', $resourceId)
-                    ->where('end_date', '=', $endDate)
-                    ->where('start_date', '>', $startDate)
-                    ->where('start_time', '<', $endTime);
-            })
-            ->orWhere(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
-                $query->where('resource_id', $resourceId)
-                    ->where('end_date', '=', $startDate)
-                    ->where('end_time', '>', $startTime)
-                    ->where('start_date', '<', $startDate);
-            })
-            ->orWhere(function ($query) use ($resourceId, $startTime, $endTime, $startDate, $endDate) {
-                $query->where('resource_id', $resourceId)
-                    ->where('start_date', '=', $startDate)
-                    ->where('start_time', '>', $startTime)
-                    ->where('end_date', '<', $endDate);
-            })
-            ->get();
+    
+
+        $conflictingBookings1 = Booking::where('resource_group_id', $resourceGroupId)
+        ->where('resource_id', $resourceId)
+        ->where('compare_start_date', '<', $compareEndDate) 
+        ->where('compare_end_date', '>', $compareEndDate) 
+        ->get();
+
+        $conflictingBookings2 = Booking::where('resource_group_id', $resourceGroupId)
+        ->where('resource_id', $resourceId)
+        ->where('compare_start_date', '<', $compareStartDate) 
+        ->where('compare_end_date', '>', $compareStartDate) 
+        ->get();
+
+        $conflictingBookings3 = Booking::where('resource_group_id', $resourceGroupId)
+        ->where('resource_id', $resourceId)
+        ->where('compare_start_date', '>', $compareStartDate) 
+        ->where('compare_end_date', '<', $compareEndDate) 
+        ->get();
+
+
+        $conflictingBookings = $conflictingBookings1
+            ->merge($conflictingBookings2)
+            ->merge($conflictingBookings3)
+            ->unique('id');
+
+
 
 
         if ($conflictingBookings->count() > 0) {
             return redirect()->back()->withErrors(['error' => 'Your bookings is overlapping with pre existing bookings!']);
         }
 
-
         $startTimeRaw = Carbon::parse($request->input('start_date') . ' ' . $request->input('start_time') . ':00');
         $endTimeRaw = Carbon::parse($request->input('end_date') . ' ' . $request->input('end_time') . ':00');
-
 
         $hoursDifference = $endTimeRaw->diffInHours($startTimeRaw);
 
@@ -129,8 +115,7 @@ class BookingsController extends Controller
         $user1->credits = $user1->credits - $overall_cost;
         $user1->save();
 
-
-
+        
         Booking::create([
             'resource_group_id' => $resourceGroupId,
             'resource_id' => $resourceId,
@@ -139,6 +124,8 @@ class BookingsController extends Controller
             'start_time' => $startTime,
             'end_date' => $endDate,
             'end_time' => $endTime,
+            'compare_start_date'=> $compareStartDate,
+            'compare_end_date'=> $compareEndDate,
             'notes' =>  $notes,
             'resource_name' => $resource1
         ]);

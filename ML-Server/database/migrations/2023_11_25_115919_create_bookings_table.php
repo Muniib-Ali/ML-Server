@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('start_time');
             $table->date('end_date');
             $table->integer('end_time');
+            $table->date('compare_start_date');
+            $table->date('compare_end_date');
             $table->text('notes')->nullable();
             $table->timestamps();
 

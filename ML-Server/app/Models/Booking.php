@@ -16,8 +16,11 @@ class Booking extends Model
         'end_date',
         'start_time',
         'end_time',
+        'compare_start_date',
+        'compare_end_date',
         'notes',
         'resource_name'
+
     ];
 
     public function user()
