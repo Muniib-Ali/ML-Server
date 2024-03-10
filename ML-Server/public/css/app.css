@@ -225,10 +225,7 @@
 
 }
 
-.bookings-page{
-    display: flex
 
-}
 
 .bookings-request{
     display: flex;
@@ -253,6 +250,15 @@
 
 
 
+
+}
+
+.bookings-page{
+    display:flex;
+    flex-direction: row;
+    padding: 2rem;
+    justify-content: space-between;
+    align-items: center;
 
 }
 
