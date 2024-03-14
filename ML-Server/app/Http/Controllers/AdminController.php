@@ -99,12 +99,15 @@ class AdminController extends Controller
         $resource_group = $resource_groups->find($request->resource_group);
 
         $threshold = $request->filled('threshold') ? $request->threshold : null;
+        $number = $request->filled('number') ? $request->number : null;
+
 
         Resource::create([
             'resource_group_id' => $request->resource_group,
             'resource_group_name' => $resource_group->resource_group,
             'name' => $request->name,
             'cost' => $request->value,
+            'number'=>$number,
             'threshold' => $threshold
         ]);
 

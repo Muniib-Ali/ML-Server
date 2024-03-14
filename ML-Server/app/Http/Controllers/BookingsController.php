@@ -50,6 +50,7 @@ class BookingsController extends Controller
         $user = $authstatus->id;
 
         $resource1 = Resource::where('id', $resourceId)->value('name');
+        $resourceGroup = ResourceGroup::where('id', $resourceGroupId)->value('resource_group');
 
         $compareStartDate = Carbon::parse($startDate . ' ' . str_pad($startTime, 2, '0', STR_PAD_LEFT) . ':00:00')->format('Y-m-d H:i:s');
 
@@ -127,7 +128,8 @@ class BookingsController extends Controller
             'compare_start_date'=> $compareStartDate,
             'compare_end_date'=> $compareEndDate,
             'notes' =>  $notes,
-            'resource_name' => $resource1
+            'resource_name' => $resource1,
+            'resource_group_name'=>$resourceGroup
         ]);
 
        

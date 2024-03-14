@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('compare_end_date');
             $table->text('notes')->nullable();
             $table->timestamps();
+            $table->text('resource_group_name');
 
             $table->foreign('resource_group_id')->references('id')->on('resource_group');
             $table->foreign('resource_id')->references('id')->on('resource');

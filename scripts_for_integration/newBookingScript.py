@@ -8,10 +8,7 @@ def fetch_bookings():
     response = requests.get(url)
     if response.status_code == 200:
         bookings_data = response.json()
-        with open(filepath, 'w') as fd:
-            json.dump(bookings_data, fd, indent=2)
-
-        print("Currently applicable bookings were saved the bookings.json")
+        return bookings_data
     else:
         print("Unable to fetch bookings, error code is:", response.status_code)
 

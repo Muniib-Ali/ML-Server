@@ -19,7 +19,8 @@ class Booking extends Model
         'compare_start_date',
         'compare_end_date',
         'notes',
-        'resource_name'
+        'resource_name',
+        'resource_group_name'
 
     ];
 

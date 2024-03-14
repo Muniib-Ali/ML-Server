@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('cost');
             $table->integer('threshold')->nullable();
+            $table->integer('number')->nullable();
             $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });

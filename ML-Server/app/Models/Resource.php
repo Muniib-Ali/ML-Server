@@ -14,7 +14,9 @@ class Resource extends Model
         'name',
         'cost',
         'resource_group_name',
-        'threshold'
+        'threshold',
+        'number'
+
         
     ];
 }
