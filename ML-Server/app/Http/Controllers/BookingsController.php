@@ -192,4 +192,9 @@ class BookingsController extends Controller
 
         
     }
+
+    public function getThreshold(){
+        $resources = Resource::all();
+        return response()->json($resources);
+    }
 }

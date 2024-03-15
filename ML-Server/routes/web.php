@@ -153,5 +153,8 @@ Route::get('/logout', [LogoutController::class, 'logout']);
 
 Route::get('/get-currentbookings', [BookingsController::class, 'jsonApi']);
 
+Route::get('/get-thresholds', [BookingsController::class, 'getThreshold']);
+
+
 
 
