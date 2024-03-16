@@ -155,6 +155,10 @@ Route::get('/get-currentbookings', [BookingsController::class, 'jsonApi']);
 
 Route::get('/get-thresholds', [BookingsController::class, 'getThreshold']);
 
+Route::get('/get-users', [BookingsController::class, 'getUsers']);
+
+
+
 
 
 

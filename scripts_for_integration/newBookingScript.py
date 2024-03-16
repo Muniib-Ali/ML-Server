@@ -32,6 +32,13 @@ def fetch_resources(resource_group):
     else:
         print("Unable to fetch resource thresholds, error code is:", response.status_code)
 
-
+def fetch_users():
+    url = "http://57.128.172.217:8000/get-users"
+    response = requests.get(url)
+    if response.status_code == 200:
+        user_data = response.json()
+        email_slack_dict = {user['email']: user['slack'] for user in user_data}
+        return email_slack_dict
 if __name__ == "__main__":
     fetch_bookings()
+     

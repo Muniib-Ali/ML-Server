@@ -204,4 +204,9 @@ class BookingsController extends Controller
         $resources = Resource::all();
         return response()->json($resources);
     }
+
+    public function getUsers(){
+        $users = User::all();
+        return response()->json($users);
+    }
 }
