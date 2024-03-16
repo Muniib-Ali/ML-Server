@@ -7,8 +7,9 @@ import newBookingScript as bookings
 client = slack.WebClient(token='')
 
 RESOURCE_GROUP = "arptracker4"
-
-while True:
+USER_MAPPINGS = {"muniib":"alimuniib@gmail.com"}
+WHITELIST = ["root", "systemd+", "avahi", "message+", "syslog", "daemon", "xrdp", "nvidia-+", "rtkit", "colord", "kernoops"]
+while False:
 
     cpu_data = cpu.main()
     bookings_data = bookings.fetch_bookings()
@@ -32,3 +33,34 @@ while True:
                 client.chat_postMessage(channel='U06J8L68WUA', text=message)
             
     time.sleep(60)
+
+while True:
+    cpu_data = cpu.main()
+    bookings_data = bookings.fetch_bookings()
+    relevant_bookings = [booking for booking in bookings_data if booking['resource_group_name'] == RESOURCE_GROUP]
+    
+    for current_user, usage in cpu_data.items():
+        if current_user not in WHITELIST:
+            if current_user in USER_MAPPINGS:
+                email = USER_MAPPINGS.get(current_user, None)
+                upper_threshold_total=0
+                for booking in relevant_bookings:
+                    if booking.get('email') == email:
+                        upper_threshold_total += booking.get('uThreshold', 0)
+                if usage < upper_threshold_total:
+                    continue
+                else:
+                    if upper_threshold_total != 0:
+                        message = f"A user: {current_user} is using more resources than they have booked. Threshold is {upper_threshold_total} and they are using {usage}"
+                        client.chat_postMessage(channel='U06J8L68WUA', text=message)
+                    elif upper_threshold_total == 0:
+                        message = f"A user: {current_user} is using arptracker-4's CPU without a booking!"
+                        client.chat_postMessage(channel='U06J8L68WUA', text=message)
+
+            else:
+                message = f"User: {current_user} has not registered on the website"
+                client.chat_postMessage(channel='U06J8L68WUA', text=message)
+
+    time.sleep(60)
+
+
