@@ -98,7 +98,9 @@ class AdminController extends Controller
         $resource_groups = ResourceGroup::all();
         $resource_group = $resource_groups->find($request->resource_group);
 
-        $threshold = $request->filled('threshold') ? $request->threshold : null;
+        $uThreshold = $request->filled('uThreshold') ? $request->uThreshold : null;
+        $lThreshold = $request->filled('lThreshold') ? $request->lThreshold : null;
+
         $number = $request->filled('number') ? $request->number : null;
 
 
@@ -108,7 +110,8 @@ class AdminController extends Controller
             'name' => $request->name,
             'cost' => $request->value,
             'number'=>$number,
-            'threshold' => $threshold
+            'uThreshold' => $uThreshold,
+            'lThreshold'=>$lThreshold
         ]);
 
         return redirect()-> intended('/resources');

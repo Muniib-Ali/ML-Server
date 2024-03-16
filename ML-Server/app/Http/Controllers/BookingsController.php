@@ -48,6 +48,7 @@ class BookingsController extends Controller
         $notes = $request->input('notes');
         $authstatus = Auth::user();
         $user = $authstatus->id;
+        $userEmail = $authstatus->email;
 
         $resource1 = Resource::where('id', $resourceId)->value('name');
         $resourceGroup = ResourceGroup::where('id', $resourceGroupId)->value('resource_group');
@@ -105,6 +106,9 @@ class BookingsController extends Controller
         $resources = Resource::all();
         $specifiedResource = $resources->find($resourceId);
         $cost = $specifiedResource->cost;
+        $uThreshold = $specifiedResource->uThreshold;
+        $lThreshold = $specifiedResource->lThreshold;
+
 
         $overall_cost = $cost * $hoursDifference;
         $users = User::all();
@@ -129,7 +133,10 @@ class BookingsController extends Controller
             'compare_end_date'=> $compareEndDate,
             'notes' =>  $notes,
             'resource_name' => $resource1,
-            'resource_group_name'=>$resourceGroup
+            'resource_group_name'=>$resourceGroup,
+            'lThreshold'=>$lThreshold,
+            'uThreshold'=>$uThreshold,
+            'email'=>$userEmail
         ]);
 
        

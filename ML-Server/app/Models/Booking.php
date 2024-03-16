@@ -20,7 +20,10 @@ class Booking extends Model
         'compare_end_date',
         'notes',
         'resource_name',
-        'resource_group_name'
+        'resource_group_name',
+        'uThreshold',
+        'lThreshold', 
+        'email'
 
     ];
 

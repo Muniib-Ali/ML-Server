@@ -23,7 +23,7 @@ def fetch_resources(resource_group):
         resource_dict = {}
         for resource in bot_resources:
             resource_name = resource['name']
-            threshold = resource.get('threshold')
+            threshold = resource.get('lThreshold')
             if threshold is None:
                 threshold = 0
             resource_dict[resource_name] = threshold

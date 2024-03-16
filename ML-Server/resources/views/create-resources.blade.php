@@ -34,14 +34,17 @@
             <label for="name"> Resource</label>
             <input type="text" placeholder="Resource" name="name" required>
 
-            <label for = "threshold"> Threshold(CPU Only):</label>
-            <input type = "number" min = "1" max = "100" placeholder="Threshold" name  = "threshold">
+            <label for = "lThreshold"> Lower Threshold(CPU Only):</label>
+            <input type = "number" min = "0" max = "100" placeholder="Lower threshold" name  = "lThreshold">
 
-            <label for = "threshold">Number(GPU Only):</label>
-            <input type = "number" min = "1" max = "100" placeholder="Threshold" name  = "number">
+            <label for = "uThreshold"> Upper Threshold(CPU Only):</label>
+            <input type = "number" min = "0" max = "100" placeholder="Upper threshold" name  = "uThreshold">
+
+            <label for = "number">Number(GPU Only):</label>
+            <input type = "number" min = "0" max = "100" placeholder="Number" name  = "number">
 
             <label for="value"> Credit cost(per hour):</label>
-            <input type="number" min="10" max="200" placeholder="Cost" name="value" required>
+            <input type="number" min="10" max="10000" placeholder="Cost" name="value" required>
 
 
 

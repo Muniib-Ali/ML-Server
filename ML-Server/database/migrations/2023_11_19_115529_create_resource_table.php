@@ -18,7 +18,8 @@ return new class extends Migration
             $table->foreign('resource_group_id')->references('id')->on('resource_group')->onDelete('cascade');
             $table->string('name');
             $table->integer('cost');
-            $table->integer('threshold')->nullable();
+            $table->integer('lThreshold')->nullable();
+            $table->integer('uThreshold')->nullable();
             $table->integer('number')->nullable();
             $table->boolean('is_enabled')->default(true);
             $table->timestamps();

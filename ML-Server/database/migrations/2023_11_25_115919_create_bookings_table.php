@@ -18,11 +18,14 @@ return new class extends Migration
             $table->integer('start_time');
             $table->date('end_date');
             $table->integer('end_time');
+            $table->integer('uThreshold');
+            $table->integer('lThreshold');
             $table->date('compare_start_date');
             $table->date('compare_end_date');
             $table->text('notes')->nullable();
             $table->timestamps();
             $table->text('resource_group_name');
+            $table->text('email');
 
             $table->foreign('resource_group_id')->references('id')->on('resource_group');
             $table->foreign('resource_id')->references('id')->on('resource');

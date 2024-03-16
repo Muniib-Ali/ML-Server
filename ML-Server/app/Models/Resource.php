@@ -14,7 +14,8 @@ class Resource extends Model
         'name',
         'cost',
         'resource_group_name',
-        'threshold',
+        'uThreshold',
+        'lThreshold',
         'number'
 
         
