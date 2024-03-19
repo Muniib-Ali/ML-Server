@@ -47,7 +47,7 @@ while True:
     cpu_data = cpu.main()
     bookings_data = bookings.fetch_bookings()
     users_dict = bookings.fetch_users()
-    admin_users = [user for user in users_dict if user['is_admin'] == 1]
+    admin_users = bookings.fetch_admin()
     relevant_bookings = [booking for booking in bookings_data if booking['resource_group_name'] == RESOURCE_GROUP]
     gpu_data = gpu.get_usage()
     

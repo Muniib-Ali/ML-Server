@@ -35,6 +35,14 @@ def fetch_users():
         user_data = response.json()
         email_slack_dict = {user['email']: user['slack'] for user in user_data}
         return email_slack_dict
+
+def fetch_admin():
+    url = "http://57.128.172.217:8000/get-users"
+    response = requests.get(url)
+    if response.status_code == 200:
+        user_data = response.json()
+        admin_user_data = [user for user in user_data if user['is_admin'] == 1]
+        return admin_user_data
 if __name__ == "__main__":
     fetch_bookings()
      
