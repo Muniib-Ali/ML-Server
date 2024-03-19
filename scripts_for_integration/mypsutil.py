@@ -48,8 +48,6 @@ def get_usage():
 def main():
     usage = get_usage()
     usage_dict = {user: {'CPU': value['CPU'], 'MEM': value['MEM']} for user, value in usage.items()}
-    # with open("cpu.json", "w") as json_file:
-        #  json.dump(usage_dict, json_file, indent=4)
     return usage_dict
 
 

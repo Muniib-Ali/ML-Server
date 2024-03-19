@@ -1,5 +1,6 @@
 from psutil import Popen
 from subprocess import PIPE
+import psutil
 
 def get_usage():
     p = Popen(["nvidia-smi"], stdout=PIPE)
@@ -25,10 +26,12 @@ def get_usage():
             break
         gpu = int(fields[1])
         pid = int(fields[4])
+        process = psutil.Process(pid)
+        user = process.username()
         if gpu in gpus.keys():
-            gpus[gpu].append(pid)
+            gpus[gpu].append({'pid': pid, 'user': user })
         else:
-            gpus[gpu] = [pid]
+            gpus[gpu] = [{'pid': pid, 'user': user }]
         #print(pid, gpu)
     return gpus
 
