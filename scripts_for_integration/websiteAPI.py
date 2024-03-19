@@ -1,11 +1,7 @@
 import requests
-import json
-import os
 
 def fetch_bookings():
     url = "http://57.128.172.217:8000/get-currentbookings"
-
-    filepath = os.path.join('scripts_for_integration', 'bookings.json');
     response = requests.get(url)
     if response.status_code == 200:
         bookings_data = response.json()
