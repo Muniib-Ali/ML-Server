@@ -25,7 +25,7 @@ class InitializeController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'max:255', 'email', 'unique:users'],
             'slack' => ['required', 'string', 'max:255', 'unique:users'],
-            'notes' => ['required', 'string', 'max:255'],
+            'notes' => ['max:255'],
             'password' => ['required', 'string', 'confirmed']
         ]);
 
@@ -41,7 +41,7 @@ class InitializeController extends Controller
  
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect()->intended('/admin');
+            return redirect()->intended('/requests');
         }
 
     }

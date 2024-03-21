@@ -21,7 +21,7 @@ class LoginController extends Controller
                 return redirect()->intended('/requests');
 
             } else {
-                return redirect()->intended('/bookings');
+                return redirect()->intended('/');
 
             }
         } else {

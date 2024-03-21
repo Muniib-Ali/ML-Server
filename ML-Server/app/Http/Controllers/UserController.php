@@ -19,7 +19,7 @@ class UserController extends Controller
             'value' => $request->credits
         ]);
 
-        return redirect()->intended('/home');
+        return redirect()->back()->with('success', 'Credit request has been sent to admins for approval!');
     }
 
     public function show()

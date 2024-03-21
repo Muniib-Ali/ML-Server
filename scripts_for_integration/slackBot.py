@@ -37,9 +37,12 @@ def post_message(channel=None, text=None, messages=None):
         raise Exception("XXX")
     if channel not in messages:
         messages[channel] = []
-    if text not in [x['text'] for x in messages[channel]]:
-        client.chat_postMessage(channel=channel, text=text)
-        messages[channel].append({'text': text, 'timestamp': time.time()})
+    try:
+        if text not in [x['text'] for x in messages[channel]]:
+            client.chat_postMessage(channel=channel, text=text)
+            messages[channel].append({'text': text, 'timestamp': time.time()})
+    except SlackApiError as e:
+        print(f"Error: {e}")
 
 while True:
     messages_sent = discard_old_messages_sent(messages_sent, TIME_THRESHOLD)

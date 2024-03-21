@@ -16,14 +16,14 @@
             <input type="text" placeholder="Resource group name" name="resource_group" required>
 
 
-            <button type="submit"> Create resource group </button>
+            <button type="submit" id = "create-reasourcegroup-button"> Create resource group </button>
 
         </form>
     </div>
     <div class="resource">
         <form class="resource-form"  method="POST" action="/createresource">
             @csrf
-            <label for="resource_group"> Resource group:</label>
+            <label for="resource_group" id = "resource-group-label"> Resource group:</label>
             <select name="resource_group" id = "resources-select">
                 <option value = "" disabled selected>Choose an option</option>
                 @foreach ($resource_group as $resource_group_member)
@@ -45,7 +45,7 @@
 
 
 
-            <button type="submit"> Create resource</button>
+            <button type="submit" id = "create-reasource-button"> Create resource</button>
 
         </form>
     </div>

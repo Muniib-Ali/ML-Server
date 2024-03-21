@@ -39,18 +39,12 @@ Route::middleware(['initializeSiteOnce'])->group(function(){
 
 Route::middleware(['userauth'])->group(function(){
 
-    Route::get('/', function () {
-        return view('user-home');
-    });
-
-    Route::get('/home', function () {
-        return view('user-home');
-    });
+   
 
     Route::get('/credits', [UserController::class, 'show']);
     Route::post('/creditrequest', [UserController::class, 'requestCredits']);
     Route::get('/logout', [LogoutController::class, 'logout']);
-    Route::get('/bookings', [BookingsController::class, 'show']);
+    Route::get('/', [BookingsController::class, 'show']);
     Route::get('/get-resources-by-group', [BookingsController::class, 'getResourcesByGroup']);
     Route::post('/bookings', [BookingsController::class, 'book']);
     Route::get('/list-bookings', [BookingsController::class, 'showBookings']);
@@ -67,10 +61,9 @@ Route::middleware(['userauth'])->group(function(){
 
 Route::middleware(['adminauth'])->group(function(){
 
-    Route::get('/admin', function () {
-        return view('admin-home');
-    });
+   
     
+
 
     
     Route::get('/users', [AdminController::class, 'listUsers']);
@@ -79,7 +72,7 @@ Route::middleware(['adminauth'])->group(function(){
 
     Route::post('/admin/resource/change-status/{id}', [AdminController::class, 'changeResourceStatus']);
     Route::post('/admin/resource/delete/{id}', [AdminController::class, 'deleteResource']);
-    Route::get('requests' , [AdminController::class, 'listRequests']);
+    Route::get('/requests' , [AdminController::class, 'listRequests']);
 
     Route::post('requests/change-status/{id}/accept', [AdminController::class, 'acceptRequest']);
     Route::post('requests/change-status/{id}/decline', [AdminController::class, 'declineRequest']);

@@ -15,7 +15,7 @@ class RegistrationController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'max:255', 'email', 'unique:users'],
             'slack' => ['required', 'string', 'max:255', 'unique:users'],
-            'notes' => ['required', 'string', 'max:255'],
+            'notes' => ['max:255'],
             'password' => ['required', 'string', 'min:8' ,'confirmed']
         ]);
 
@@ -29,11 +29,19 @@ class RegistrationController extends Controller
         ]);
         
         $credentials = $request->only('slack', 'password');
- 
+
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect()->intended('/admin');
-        }
+            $authstatus = Auth::user();
+            $user = $authstatus->is_admin;
+            if($user){
+                return redirect()->intended('/requests');
+
+            } else {
+                return redirect()->intended('/');
+
+            }
+        } 
 
     }
 }

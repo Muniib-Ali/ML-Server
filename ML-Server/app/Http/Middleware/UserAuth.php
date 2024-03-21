@@ -26,7 +26,7 @@ class UserAuth
         if(!empty($authstatus)) {
             $is_admin = $authstatus->is_admin;
         if($is_admin == true){
-            return redirect('/admin');
+            return redirect()->back();
         }
         }
         return $next($request);

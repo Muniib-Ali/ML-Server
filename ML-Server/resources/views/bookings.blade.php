@@ -91,10 +91,9 @@
           <option value=23> 23 </option>
         </select>
 
-        <label for="notes"> Notes: </label>
         <input type="text-box" placeholder="Notes" name="notes">
 
-        <button type=" submit">Submit</button>
+        <button type=" submit" id = "create-booking-button">Submit</button>
 
       </form>
 

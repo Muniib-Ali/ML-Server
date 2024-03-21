@@ -8,19 +8,21 @@
 
 <body class = "guest-layout">
     <div class = "registration">
+
         <form method = "POST" action = "/initialize" class = "registration-form">
+        <div id = "initialization-header">     
+        <h1>Initialize page</h1>
+        </div>
+
             @csrf
-            <p>Initialize page</p>
-            <label for = "name">Name: </label>
-            <input type="text" placeholder="name" name="name" value = "{{old('name')}}">
+            <input type="text" placeholder="Name" name="name" value = "{{old('name')}}">
             @error('name')
             <div class="registration-error-message">
                 {{$message}}
             </div>
             @enderror
 
-            <label for = "email"> Email: </label>
-            <input type="text" placeholder="email" name="email" value = "{{old('email')}}">
+            <input type="text" placeholder="Email" name="email" value = "{{old('email')}}">
 
             @error('email')
             <div class="registration-error-message">
@@ -28,8 +30,7 @@
             </div>
             @enderror
 
-            <label for = "slack"> Slack:  </label>
-            <input type="text" placeholder="slack" name="slack" value = "{{old('slack')}}">
+            <input type="text" placeholder="Slack" name="slack" value = "{{old('slack')}}">
 
             @error('slack')
             <div class="registration-error-message">
@@ -37,8 +38,7 @@
             </div>
             @enderror
 
-            <label for = "notes"> Notes: </label>
-            <input type="text" placeholder="notes" name="notes" value = "{{old('notes')}}">
+            <input type="text" placeholder="Notes" name="notes" value = "{{old('notes')}}">
 
             @error('notes')
             <div class="registration-error-message">
@@ -46,8 +46,7 @@
             </div>
             @enderror
 
-            <label for = "password"> Password: </label>
-            <input type = "password" placeholder = "password" name  = "password">
+            <input type = "password" placeholder = "Password" name  = "password">
 
             @error('password')
             <div class="registration-error-message">
@@ -55,8 +54,7 @@
             </div>
             @enderror
 
-            <label for  = "password_confirmation"> Confirm Password: </label>
-            <input type = "password" placeholder=" re-enter password" name = "password_confirmation">
+            <input type = "password" placeholder=" Re-enter password" name = "password_confirmation">
 
             <button type = "submit"> Create Account </button>
 

@@ -19,7 +19,7 @@
             <p class="credits">Credits: {{auth()->user()->credits}} </p>
             <i class="fa-solid fa-coins"></i>
             <a href="{{url('update-account')}}">Account</a>
-            <a href="{{url('bookings')}}">Create booking</a>
+            <a href="{{url('')}}">Create booking</a>
             <a href="{{url('list-bookings')}}">Bookings</a>
             <a href="{{url('credits')}}">Request credits</a>
             
