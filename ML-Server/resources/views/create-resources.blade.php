@@ -13,8 +13,7 @@
     <div class="resource-group">
         <form class="resource-group-form" action="/createresourcegroup" method="POST">
             @csrf
-            <label for="resource_group"> Resource group name: </label>
-            <input type="text" placeholder="Resource group" name="resource_group" required>
+            <input type="text" placeholder="Resource group name" name="resource_group" required>
 
 
             <button type="submit"> Create resource group </button>
@@ -31,20 +30,18 @@
                 <option value="{{$resource_group_member->id}}">{{$resource_group_member->resource_group}}</option>
                 @endforeach
             </select>
-            <label for="name"> Resource</label>
             <input type="text" placeholder="Resource" name="name" required>
 
-            <label for = "lThreshold"> Lower Threshold(CPU Only):</label>
-            <input type = "number" min = "0" max = "100" placeholder="Lower threshold" name  = "lThreshold">
+            <input type = "number" min = "0" max = "100" placeholder="Lower threshold(CPU Only)" name  = "lThreshold">
 
-            <label for = "uThreshold"> Upper Threshold(CPU Only):</label>
-            <input type = "number" min = "0" max = "100" placeholder="Upper threshold" name  = "uThreshold">
+    
+            <input type = "number" min = "0" max = "100" placeholder="Upper threshold(CPU Only)" name  = "uThreshold">
 
-            <label for = "number">Number(GPU Only):</label>
-            <input type = "number" min = "0" max = "100" placeholder="Number" name  = "number">
 
-            <label for="value"> Credit cost(per hour):</label>
-            <input type="number" min="10" max="10000" placeholder="Cost" name="value" required>
+            <input type = "number" min = "0" max = "100" placeholder="Number(GPU Only)" name  = "number">
+
+    
+            <input type="number" min="10" max="10000" placeholder="Credit cost(per hour)" name="value" required>
 
 
 
@@ -54,7 +51,7 @@
     </div>
 
     <div class="change-resources">
-        <table class="resources-table">
+        <table class="table table-striped table-dark">
                 <thead>
                 <tr>
                     <th>Resource Group</th>
@@ -74,14 +71,14 @@
                     <td>
                         <form action="admin/resource/change-status/{{$resource->id}}" method="post">
                             @csrf
-                            <button type="submit">{{$resource->is_enabled? 'Disable' : 'Enable'}}</button>
+                            <button type="submit" id ="change-resource-status">{{$resource->is_enabled? 'Disable' : 'Enable'}}</button>
                         </form>
 
                     </td>
                     <td>
                         <form action="admin/resource/delete/{{$resource->id}}" method="post">
                             @csrf
-                            <button type="submit">Delete</button>
+                            <button type="submit" id = "resource-delete-button">Delete</button>
                         </form>
                     </td>
                 </tr>

@@ -19,15 +19,17 @@
         <form method="POST" action="/login" class="login-form">
             @csrf
 
-            <label for="email"> Email </label>
-            <input type="text" placeholder="email" name="email">
+            <!--<label for="email"> Email </label>-->
+            <input type="text" placeholder="Email" name="email">
 
-            <label for="password"> Password </label>
-            <input type="password" placeholder="password" name="password">
+            <!--<label for="password"> Password </label>-->
+            <input type="password" placeholder="Password" name="password">
 
             <button type="submit"> Login </button>
-            <a href = "/signup" class = "account-links">Don't have an account? Create one here!</a>
-            <a href = "/password-reset" class = "account-links">Forgot password? Reset here!</a>
+            <div class = "login-page-links">
+            <a href = "/signup" class = "account-links">Don't have an account?<br>Create one here!</a>
+            <a href = "/password-reset" class = "account-links">Forgot password?<br>Reset here!</a>
+            </div>
 
 
         </form>

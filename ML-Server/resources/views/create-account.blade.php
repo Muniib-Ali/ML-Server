@@ -11,8 +11,7 @@
     <div class="registration">
         <form method="POST" action="/createaccount" class="registration-form">
             @csrf
-            <label for="name">Name </label>
-            <input type="text" placeholder="name" name="name" value = "{{old('name')}}">
+            <input type="text" placeholder="Name" name="name" value = "{{old('name')}}">
 
             @error('name')
             <div class="registration-error-message">
@@ -21,8 +20,7 @@
             @enderror
 
 
-            <label for="email"> Email </label>
-            <input type="text" placeholder="email" name="email" value = "{{old('email')}}">
+            <input type="text" placeholder="Email" name="email" value = "{{old('email')}}">
 
             @error('email')
             <div class="registration-error-message">
@@ -31,8 +29,7 @@
             @enderror
 
 
-            <label for="slack"> Slack </label>
-            <input type="text" placeholder="slack" name="slack" value = "{{old('slack')}}">
+            <input type="text" placeholder="Slack" name="slack" value = "{{old('slack')}}">
 
             @error('slack')
             <div class="registration-error-message">
@@ -40,8 +37,7 @@
             </div>
             @enderror
 
-            <label for="notes"> Notes: </label>
-            <input type="text" placeholder="notes" name="notes" value = "{{old('notes')}}">
+            <input type="text" placeholder="Notes" name="notes" value = "{{old('notes')}}">
             @error('notes')
             <div class="registration-error-message">
                 {{$message}}
@@ -49,19 +45,21 @@
             @enderror
 
 
-            <label for="password"> Password </label>
-            <input type="password" placeholder="password" name="password">
+            <input type="password" placeholder="Password" name="password">
             @error('password')
             <div class="registration-error-message">
                 {{$message}}
             </div>
             @enderror
 
-            <label for="password_confirmation"> Confirm Password </label>
-            <input type="password" placeholder=" re-enter password" name="password_confirmation">
+            <input type="password" placeholder=" Re-enter password" name="password_confirmation">
 
             <button type="submit"> Create Account </button>
-            <a href="/login" class="account-links">Already have an account? Login here!</a>
+            <div class = "login-page-links">
+            <a href="/login" class="account-links">Already have an account?<br>Login here!</a>
+            <a href = "/password-reset" class = "account-links">Forgot password?<br>Reset here!</a>
+
+            </div>
 
         </form>
     </div>

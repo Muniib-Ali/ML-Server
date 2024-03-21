@@ -14,7 +14,7 @@
 
 <body>
   <div class="listed-bookings">
-  <table class = "listed-bookings-table">
+  <table class = "table table-striped table-dark">
         <thead>
             <tr>
                 <th>Resource Group</th>
@@ -40,7 +40,7 @@
                     <td>
                         <form action = "/delete-booking/{{$booking->id}}" method = "post">
                             @csrf
-                            <button type = "submit">Delete</button>
+                            <button type = "submit" id = "bookings-delete-button">Delete</button>
                         </form>
 
                     </td>

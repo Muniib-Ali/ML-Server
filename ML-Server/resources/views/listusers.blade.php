@@ -2,13 +2,15 @@
 @section('page')
 <!DOCTYPE html>
 <html>
+<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+
 <header>
 
 </header>
 
 <body>
     <div class = "list-users">
-    <table class = "users-table">
+    <table class = "table table-striped table-dark">
         <thead>
             <tr>
                 <th>ID</th>
@@ -36,7 +38,7 @@
                     <td>
                         <form action = "admin/change-status/{{$user->id}}" method = "post">
                             @csrf
-                            <button type = "submit">{{$user->is_admin? 'Make User' : 'Make Admin'}}</button>
+                            <button type = "submit" id = "change-admin-status">{{$user->is_admin? 'Make User' : 'Make Admin'}}</button>
                         </form>
 
                     </td>

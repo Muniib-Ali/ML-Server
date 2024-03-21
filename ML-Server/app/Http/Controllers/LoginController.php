@@ -15,7 +15,15 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect()->intended('/home');
+            $authstatus = Auth::user();
+            $user = $authstatus->is_admin;
+            if($user){
+                return redirect()->intended('/requests');
+
+            } else {
+                return redirect()->intended('/bookings');
+
+            }
         } else {
             return redirect()->back()->withErrors(['error' => 'Email or Password are incorrect']);
         }

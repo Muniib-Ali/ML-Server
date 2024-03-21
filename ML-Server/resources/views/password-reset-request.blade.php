@@ -17,7 +17,6 @@
         <form method="POST" action="/password-reset" class="login-form">
             @csrf
 
-            <label for="email"> Email </label>
             <input type="email" placeholder="Enter your email" name="email" required>
 
             <button type="submit"> Reset Password </button>

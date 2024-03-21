@@ -1,19 +1,26 @@
 .user-layout {
     display: flex;
     flex-direction: column;
-    margin: 0rem;
+    margin: 0.4rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
 .admin-layout {
     display: flex;
     flex-direction: column;
-    margin: 0rem;
+    margin: 0.4rem;
+    background-color: #2e2d2d;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 
 
 }
 
 .guest-layout{
     margin: 0rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
 .header-links{
@@ -52,9 +59,10 @@
     width: 30rem;
     justify-content: center;
     border-style: solid;
-    border-color: #424141;
+    border-width: 0.15rem;
+
+    border-color: #bfc3c9;
     padding: 2rem;
-    border-radius: 1.5rem;
 
 }
 
@@ -72,6 +80,31 @@
     padding-top: 10rem;  
 }
 
+input{
+    color: white;
+    background-color: black;
+    border-radius: 0.2rem;
+    border-style: solid;
+    height: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    padding: 0.2rem;
+
+
+}
+
+.login-page-links{
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-page-links>a{
+    text-decoration: none;
+    color: white;
+    font-size: 0.8rem;
+    
+}
+
 
 
 .registration{
@@ -87,23 +120,23 @@
     justify-content: center;
     width: 30rem;
     border-style:solid;
-    border-color: #424141;
-    border-radius: 1.5rem;
+    border-color: #cccaca;
+    
+    border-width: 0.15rem;
     padding: 2rem;
-}
-
-.registration-form>input, .login-form> input{
-    margin-bottom: 0.5rem;
-    border-radius: 0.2rem;
-    padding: 0.2rem;
 
 }
+
+
 
 .registration-form>button, .login-form>button{
-    margin-top: 0.5rem;
     padding: 0.2rem;
     border-radius: 0.2rem; 
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    height: 2rem;
 }
+
 .registration-form>button:hover, .login-form>button:hover{
     background-color: #c3c4c7;
     
@@ -144,58 +177,6 @@
 }
 
   
-
-.change-resources > table,.resources-table>thead > tr>th,.resources-table> tbody >tr> td {
-    border: solid  #424141;
-    border-collapse: collapse;
-    padding: 1rem;
-
-    border-radius: 1.5rem;
-
-
-  }
-
-  .listed-bookings > table,.list-users > table,.users-table>thead > tr>th,.users-table> tbody >tr> td {
-    border: solid  #424141;
-    border-collapse: collapse;
-    padding: 1rem;
-
-    border-radius: 1.5rem;
-
-
-  }
-
-  .listed-bookings-table> thead> tr > th, .listed-bookings-table> tbody > tr > td{
-    border: solid  #424141;
-    border-collapse: collapse;
-    padding: 1rem;
-
-    border-radius: 1.5rem;
-  }
-
-  
-
-
-  .completed-requests-container > table,.completed-requests-table>thead > tr>th,.completed-requests-table> tbody >tr> td {
-    border: solid  #424141;
-    border-collapse: collapse;
-    padding: 1rem;
-
-    border-radius: 1.5rem;
-
-
-  }
-
-  .requests-container > table,.requests-table>thead > tr>th,.requests-table> tbody >tr> td {
-    border: solid  #424141;
-    border-collapse: collapse;
-    padding: 1rem;
-
-    border-radius: 1.5rem;
-
-
-  }
-
   .alert-danger{
     color:#721c24;
     background-color:#f8d7da;
@@ -264,12 +245,48 @@
 
 
 
-
+.user-layout{
+    background-color: #2e2d2d;
+    min-height: auto;
+    color: white;
+    height: auto;
+}
   
 
    
 
+.guest-layout{
+    background-color: #2e2d2d;
+    min-height: auto;
+    color: white;
+    height: auto;
+}
 
+.table {
+    width: 70%;
+}
+
+#bookings-delete-button, #credit-request-decline, #resource-delete-button{
+    background-color: darkred;
+    border-radius: 0.3rem;
+    color: white;
+    border: none;
+}
+
+#credit-request-accept{
+    background-color: darkgreen;
+    border-radius: 0.3rem;
+    color: white;
+    border: none;
+    
+}
+
+#change-admin-status, #change-resource-status{
+    background-color: darkorange;
+    border-radius: 0.3rem;
+    color: white;
+    border: none;
+}
 
 
 

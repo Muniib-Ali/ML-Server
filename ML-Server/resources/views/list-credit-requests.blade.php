@@ -2,13 +2,15 @@
 @section('page')
 <!DOCTYPE html>
 <html>
+<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+
 <header>
 
 </header>
 
 <body>
     <div class = "requests-container">
-    <table class = "requests-table">
+    <table class = "table table-striped table-dark">
         <thead>
             <tr>
                 <th>ID</th>
@@ -29,14 +31,14 @@
                     <td>
                         <form action = "requests/change-status/{{$request->id}}/accept" method = "post">
                             @csrf
-                            <button type = "submit">Accept</button>
+                            <button type = "submit" id = "credit-request-accept">Accept</button>
                         </form>
                         
                     </td>
                     <td>
                         <form action = "requests/change-status/{{$request->id}}/decline" method = "post">
                             @csrf
-                            <button type = "submit">Decline</button>
+                            <button type = "submit" id = "credit-request-decline">Decline</button>
                         </form>
                         
                     </td>
@@ -48,7 +50,7 @@
     </div>
 
     <div class  = "completed-requests-container">
-    <table class = "completed-requests-table">
+    <table class = "table table-striped table-dark">
         <thead>
             <tr>
                 <th>ID</th>

@@ -88,7 +88,7 @@ while True:
                 if process['user'] in USER_MAPPINGS:
                     email = USER_MAPPINGS.get(process['user'], None)
                     slack_id = users_dict.get(email)
-                    hasbooked = False
+                    hasBooked = False
                     for booking in relevant_bookings:
                         if booking['email'] == email:
                             if str(singleGPU) in booking['name']:
