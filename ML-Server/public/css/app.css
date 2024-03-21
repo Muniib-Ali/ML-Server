@@ -76,10 +76,11 @@
     margin-top: 1rem;
 }
 
-.login, .resource-group, .resource{
+.login{
     display: flex;
     justify-content: center;
-    padding-top: 10rem;  
+    padding-top: 10rem;
+     
 }
 
 input{
@@ -192,7 +193,7 @@ input{
 }
 
 
-.listed-bookings,.change-resources, .list-users, .requests-container, .completed-requests-container{
+.listed-bookings, .list-users, .requests-container, .completed-requests-container{
     display: flex;
     justify-content: center;
     padding-top: 10rem;  
@@ -286,6 +287,8 @@ input{
 
 .table {
     width: 70%;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.8);
+
 }
 
 #bookings-delete-button, #credit-request-decline, #resource-delete-button{
@@ -323,6 +326,32 @@ select{
 #resource-group-label{
     color: white;
 }
+
+
+.resource-group {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 5rem;
+     
+}
+
+.change-resources{
+    display: flex;
+    justify-content: center;
+    
+}
+
+
+
+.resources-body{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#resource-table{
+    width: 50%;
+}
+
 
 
 
