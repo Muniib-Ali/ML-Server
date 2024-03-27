@@ -32,10 +32,10 @@
                 </select>
                 <input type="text" placeholder="Resource" name="name" required>
 
-                <input type="number" min="0" max="100" placeholder="Lower threshold(CPU Only)" name="lThreshold">
+                <input type="number" min="0" max="1000" placeholder="Lower threshold(CPU Only)" name="lThreshold">
 
 
-                <input type="number" min="0" max="100" placeholder="Upper threshold(CPU Only)" name="uThreshold">
+                <input type="number" min="0" max="1000" placeholder="Upper threshold(CPU Only)" name="uThreshold">
 
 
                 <input type="number" min="0" max="100" placeholder="Number(GPU Only)" name="number">

@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -16,14 +17,21 @@
         </div>
 
         <div class="header-right">
+            <p class="credits">Credits: {{auth()->user()->credits}} </p>
+            <i class="fa-solid fa-coins"></i>
+            <a href="{{url('update-account')}}">Account</a>
+            <a href="{{url('')}}">Create booking</a>
+            <a href="{{url('list-bookings')}}">Bookings</a>
+            <a href="{{url('credits')}}">Request credits</a>
+
+
             <a href="{{url('users')}}">Users</a>
             <a href="{{url('requests')}}">Requests</a>
             <a href="{{url('resources')}}">Resources</a>
 
-
-
             @auth
             <a href="{{url('logout')}}"> Sign out </a>
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
             @endauth
 
             @guest

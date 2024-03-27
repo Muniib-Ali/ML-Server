@@ -22,11 +22,16 @@
             <a href="{{url('')}}">Create booking</a>
             <a href="{{url('list-bookings')}}">Bookings</a>
             <a href="{{url('credits')}}">Request credits</a>
-            
+            @if(auth()->user()->is_admin)
+            <a href="{{url('users')}}">Users</a>
+            <a href="{{url('requests')}}">Requests</a>
+            <a href="{{url('resources')}}">Resources</a>
+
+            @endif
             <a href="{{url('logout')}}"> Sign out </a>
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
 
-
+            
 
         </div>
     </div>

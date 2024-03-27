@@ -23,12 +23,7 @@ class UserAuth
         }elseif(empty($authstatus)){
             return redirect('/login');
         }
-        if(!empty($authstatus)) {
-            $is_admin = $authstatus->is_admin;
-        if($is_admin == true){
-            return redirect()->back();
-        }
-        }
+        
         return $next($request);
     }
 }

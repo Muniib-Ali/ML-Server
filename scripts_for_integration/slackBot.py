@@ -70,7 +70,7 @@ while True:
                         for admin_user in admin_users:
                             message = f"A user: {current_user} is using more resources than they have booked. Threshold is {upper_threshold_total} and they are using {usage['CPU']}"
                             post_message(channel=admin_user.get('slack'), text=message, messages=messages_sent)
-                        message = f"You are using more {RESOURCE_GROUP} : CPU than you have booked!"
+                        message = f"You are using more {RESOURCE_GROUP} : CPU than you have booked! Threshold is {upper_threshold_total} but you are using {usage['CPU']}"
                         post_message(channel=slack_id, text=message, messages=messages_sent)
                     elif upper_threshold_total == 0:
                         for admin_user in admin_users:
@@ -94,7 +94,7 @@ while True:
                     hasBooked = False
                     for booking in relevant_bookings:
                         if booking['email'] == email:
-                            if str(singleGPU) in booking['name']:
+                            if str(singleGPU) in booking['resource_name']:
                                 hasBooked = True
                     if hasBooked == True:
                         continue
