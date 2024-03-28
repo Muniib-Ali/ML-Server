@@ -1,0 +1,10 @@
+{
+    "resource_group": "arptracker4",
+    "user_mappings": {"muniib":"alimuniib@gmail.com", "ljmanso": "l.manso@aston.ac.uk"},
+    "whitelist": ["root", "systemd+", "avahi", "message+", "syslog", "daemon", "xrdp", "nvidia-+", "rtkit", "colord", "kernoops"],
+    "time_threshold": 600,
+    "minimum_usage": 10,
+    "token": "xxxxxxxxxxxx",
+    "kill_time": 10,
+    "ab_filter": 0.9
+}
