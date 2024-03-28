@@ -11,7 +11,7 @@
     <div class="registration">
         <form method="POST" action="/update-account" class="registration-form">
             @csrf
-            <input type="text" placeholder="Name" name="name">
+            <input type="text" placeholder="Name" name="name" value = "{{auth()->user()->name}}">
 
             @error('name')
             <div class="registration-error-message">
@@ -20,7 +20,7 @@
             @enderror
 
 
-            <input type="text" placeholder="Email" name="email">
+            <input type="text" placeholder="Email" name="email" value = "{{auth()->user()->email}}">
 
             @error('email')
             <div class="registration-error-message">
@@ -29,7 +29,7 @@
             @enderror
 
 
-            <input type="text" placeholder="Slack" name="slack">
+            <input type="text" placeholder="Slack" name="slack" value =  "{{auth()->user()->slack}}"">
 
             @error('slack')
             <div class="registration-error-message">
@@ -37,7 +37,7 @@
             </div>
             @enderror
 
-            <input type="text" placeholder="Notes" name="notes">
+            <input type="text" placeholder="Notes" name="notes" value = "{{auth()->user()->notes}}">
             @error('notes')
             <div class="registration-error-message">
                 {{$message}}

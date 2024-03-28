@@ -6,7 +6,6 @@ import mypsutil as cpu
 import websiteAPI as bookings
 import mygputil as gpu
 import re
-from dotenv import load_dotenv
 import json
 
 config = json.load(open("config.json", 'r'))
@@ -16,7 +15,7 @@ USER_MAPPINGS = config["user_mappings"]
 WHITELIST = config["whitelist"]
 TIME_THRESHOLD = config["time_threshold"]
 MINIMUM_USAGE = config["minimum_usage"]
-TOKEN = config["minimum_usage"]
+TOKEN = config["token"]
 ABFILTER = config["ab_filter"]
 KILL_TIME = config["kill_time"]
 
@@ -49,32 +48,31 @@ def add_user_to_terminate(uid, slack_id):
         users_to_terminate[uid] = {'timestamp': timestamp, 'slack_id': slack_id}
 
 def terminate_users_and_proccesses(messages_sent):
-    for uid, data in users_to_terminate:
+    for uid, data in list(users_to_terminate.items()):
         current_time = time.time()
         slack_id = data['slack_id']
         timestamp = data['timestamp']
-        user = data['user']
         if current_time - timestamp >= KILL_TIME:
             #kill_by_user(uid)
-            message = "All user processes would be terminated for using the system without a booking, however since this is a test run of the system only a warning message is sent"
+            message = "All user processes would be terminated at this point, however since this is a test run of the system only a warning message is sent"
             post_message(channel=slack_id, text = message, messages=messages_sent )
             for admin_user in admin_users:
-                message = f"User: {uid} would have been terminated if the system was really implemented for using the CPU without a booking"
+                message = f"User: {uid} would have been terminated if the system was really implemented"
                 post_message(channel=admin_user.get('slack'), text=message, messages=messages_sent)
             del users_to_terminate[uid]
 
 
-    for pid, data in process_to_terminate:
+    for pid, data in list(process_to_terminate.items()):
         current_time = time.time()
         slack_id = data['slack_id']
         timestamp = data['timestamp']
         user = data['user']
         if current_time - timestamp >= KILL_TIME:
             #kill_pid(pid)
-            message = f"Process: {pid} would be killed for using the system without a booking, however since this is a test run of the system only a warning message is sent"
+            message = f"Process: {pid} would be killed at this point, however since this is a test run of the system only a warning message is sent"
             post_message(channel=slack_id, text = message, messages=messages_sent )
             for admin_user in admin_users:
-                message = f"Process {pid} by {user} would have been terminated if the system was really implemented for using a GPU without a booking"
+                message = f"Process {pid} by {user} would have been terminated if the system was really implemented for using a GPU without booking it"
                 post_message(channel=admin_user.get('slack'), text=message, messages=messages_sent)
             del process_to_terminate[pid]
 
@@ -93,7 +91,7 @@ def discard_old_messages_sent(messages, threshold):
 
 def post_message(channel=None, text=None, messages=None):
 
-    message = re.sub("([\(]).*?([\)])", "\g<1>\g<2>", message)
+    text = re.sub("([\(]).*?([\)])", "\g<1>\g<2>", text)
 
     if channel is None or text is None or message is None:
         raise Exception("XXX")
@@ -110,7 +108,7 @@ def post_message(channel=None, text=None, messages=None):
 
 while True:
     messages_sent = discard_old_messages_sent(messages_sent, TIME_THRESHOLD)
-    terminate_users_and_proccesses()
+    terminate_users_and_proccesses(messages_sent)
     cpu_data = cpu.main()
     bookings_data = bookings.fetch_bookings()
     users_dict = bookings.fetch_users()
@@ -143,6 +141,8 @@ while True:
                             post_message(channel=admin_user.get('slack'), text=message, messages=messages_sent)
                         message = f"You are using more {RESOURCE_GROUP} : CPU than you have booked! Threshold is ({upper_threshold_total}) but you are using ({cpu_usage[current_user]})"
                         post_message(channel=slack_id, text=message, messages=messages_sent)
+                        add_user_to_terminate(current_user, slack_id)
+
                     elif upper_threshold_total == 0:
                         for admin_user in admin_users:
                             message = f"A user: {current_user} is using {RESOURCE_GROUP}'s CPU without a booking!"
@@ -156,6 +156,8 @@ while True:
                 for admin_user in admin_users:
                     message = f"User: {current_user} has not registered on the website and is using more than CPU minimum threshold"
                     post_message(channel=admin_user.get('slack'), text=message, messages=messages_sent)
+                add_user_to_terminate(current_user, 0)
+
 
     
     for singleGPU, processes in gpu_data.items():
@@ -185,6 +187,7 @@ while True:
                     for admin_user in admin_users:
                         message = f"User: {process['user']} has not registered on the website and is using GPU number: {singleGPU}"
                         post_message(channel=admin_user.get('slack'), text=message, messages=messages_sent)
+                    add_process_to_terminate(process['pid'], 0, process['user'])
 
     
     

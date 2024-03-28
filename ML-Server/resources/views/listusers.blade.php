@@ -13,11 +13,11 @@
     <table class = "table table-striped table-dark">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Slack</th>
                 <th>Credits</th>
-                <th>Admin Status</th>
+                <th>Is admin?</th>
                 <th>Change Status</th>
             </tr>
 
@@ -26,14 +26,14 @@
             @foreach ($users as $user )
             @if($user->id != 1)
                 <tr>
-                    <td>{{$user-> id}}</td>
+                    <td>{{$user-> name}}</td>
                     <td>{{$user-> email}}</td>
                     <td>{{$user-> slack}}</td>
                     <td>{{$user-> credits}}</td>
                     @if($user->is_admin == '1')
-                    <td>true</td>
+                    <td>Yes</td>
                     @else
-                    <td>false</td>
+                    <td>No</td>
                     @endif
                     <td>
                         <form action = "admin/change-status/{{$user->id}}" method = "post">

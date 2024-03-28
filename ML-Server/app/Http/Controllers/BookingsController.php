@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\SlackService;
+use Exception;
 
 class BookingsController extends Controller
 {
@@ -53,13 +54,14 @@ class BookingsController extends Controller
         $resource1 = Resource::where('id', $resourceId)->value('name');
         $resourceGroup = ResourceGroup::where('id', $resourceGroupId)->value('resource_group');
 
-        $compareStartDate = Carbon::parse($startDate . ' ' . str_pad($startTime, 2, '0', STR_PAD_LEFT) . ':00:00')->format('Y-m-d H:i:s');
-
-
-        $compareEndDate = Carbon::parse($endDate . ' ' . str_pad($endTime, 2, '0', STR_PAD_LEFT) . ':00:00')->format('Y-m-d H:i:s');
-
-
-        
+        try{
+            $compareStartDate = Carbon::parse($startDate . ' ' . str_pad($startTime, 2, '0', STR_PAD_LEFT) . ':00:00')->format('Y-m-d H:i:s');
+            $compareEndDate = Carbon::parse($endDate . ' ' . str_pad($endTime, 2, '0', STR_PAD_LEFT) . ':00:00')->format('Y-m-d H:i:s');
+            $startTimeRaw = Carbon::parse($request->input('start_date') . ' ' . $request->input('start_time') . ':00');
+            $endTimeRaw = Carbon::parse($request->input('end_date') . ' ' . $request->input('end_time') . ':00');
+        } catch (Exception $e){
+            return redirect()->back()->withErrors(['error' => 'You typed an invalid date!']);
+        }        
 
         if ($compareStartDate >= $compareEndDate) {
             return redirect()->back()->withErrors(['error' => 'End time must be greater than start time!']);
@@ -98,8 +100,7 @@ class BookingsController extends Controller
             return redirect()->back()->withErrors(['error' => 'Your bookings is overlapping with pre existing bookings!']);
         }
 
-        $startTimeRaw = Carbon::parse($request->input('start_date') . ' ' . $request->input('start_time') . ':00');
-        $endTimeRaw = Carbon::parse($request->input('end_date') . ' ' . $request->input('end_time') . ':00');
+        
 
         $hoursDifference = $endTimeRaw->diffInHours($startTimeRaw);
 
