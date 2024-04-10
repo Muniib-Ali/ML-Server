@@ -14,6 +14,8 @@
 
 <body>
   <div class="listed-bookings">
+  <h1>In progress Bookings</h1>
+
   <table class = "table table-striped table-dark">
         <thead>
             <tr>
@@ -29,9 +31,9 @@
 
         </thead>
         <tbody>
-            @foreach ($bookings as $booking )
+            @foreach ($filteredUncompleteBookings as $booking )
                 <tr>
-                    <td>{{$booking-> resource_group_id}}</td>
+                    <td>{{$booking-> resource_group_name}}</td>
                     <td>{{$booking-> resource_name}}</td>
                     <td>{{$booking-> start_date}}</td>
                     <td>{{$booking-> start_time}}</td>
@@ -40,7 +42,7 @@
                     <td>
                         <form action = "/delete-booking/{{$booking->id}}" method = "post">
                             @csrf
-                            <button type = "submit" id = "bookings-delete-button">Delete</button>
+                            <button type = "submit" id = "bookings-delete-button">Cancel</button>
                         </form>
 
                     </td>
@@ -51,6 +53,40 @@
             @endforeach
         </tbody>
     </table>
+    <h1>Completed Bookings</h1>
+    <table class = "table table-striped table-dark">
+        <thead>
+            <tr>
+                <th>Resource Group</th>
+                <th>Resource Name</th>
+                <th>Start Date</th>
+                <th>Start Time</th>
+                <th>End Date</th>
+                <th>End Time</th>
+                
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach ($filteredCompleteBookings as $booking )
+                <tr>
+                    <td>{{$booking-> resource_group_name}}</td>
+                    <td>{{$booking-> resource_name}}</td>
+                    <td>{{$booking-> start_date}}</td>
+                    <td>{{$booking-> start_time}}</td>
+                    <td>{{$booking-> end_date}}</td>
+                    <td>{{$booking-> end_time}}</td>
+            
+                   
+                    
+                   
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+
+
     
   </div>
   

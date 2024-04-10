@@ -11,7 +11,9 @@ class CreditRequest extends Model
     protected $fillable = [
         'user_id',
         'value',
-        'status'
+        'status',
+        'name',
+        'email'
         
     ];
 }

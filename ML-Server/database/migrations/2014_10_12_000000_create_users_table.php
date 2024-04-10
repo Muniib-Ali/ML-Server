@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('notes')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->boolean('is_active')->default(false);
+
         });
     }
 

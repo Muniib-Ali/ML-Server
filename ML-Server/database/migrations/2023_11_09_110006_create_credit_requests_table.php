@@ -15,8 +15,10 @@ return new class extends Migration
         $table->id();
         $table->unsignedBigInteger('user_id');
         $table->integer('value');
-        $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+        $table->enum('status', ['Pending', 'Accepted', 'Rejected'])->default('Pending');
         $table->timestamps();
+        $table->text('name');
+        $table->text('email');
 
         // Foreign key constraint to link user_id to the users table
         $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

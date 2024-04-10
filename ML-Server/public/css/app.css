@@ -291,14 +291,14 @@ input{
 
 }
 
-#bookings-delete-button, #credit-request-decline, #resource-delete-button{
+#bookings-delete-button, #credit-request-decline, #resource-delete-button, #deactivate-account{
     background-color: darkred;
     border-radius: 0.3rem;
     color: white;
     border: none;
 }
 
-#credit-request-accept{
+#credit-request-accept, #activate-account{
     background-color: darkgreen;
     border-radius: 0.3rem;
     color: white;
@@ -356,4 +356,62 @@ select{
 
 
 
+#start_date{
+    color-scheme: dark;
+}
 
+#end_date{
+    color-scheme:dark;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  
+  .alert h4 {
+    margin-top: 0;
+    color: inherit;
+  }
+  
+  .alert .alert-link {
+    font-weight: bold;
+  }
+  
+  .alert > p,
+  .alert > ul {
+    margin-bottom: 0;
+  }
+  
+  .alert > p + p {
+    margin-top: 5px;
+  }
+  
+
+  
+  .alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+  }
+  
+  .alert-success hr {
+    border-top-color: #c9e2b3;
+  }
+  
+  .alert-success .alert-link {
+    color: #2b542c;
+  }
+  
+  
+  .listed-bookings{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .listed-bookings>table{
+    margin-bottom: 10rem;
+  }
+  

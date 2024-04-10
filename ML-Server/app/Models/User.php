@@ -26,7 +26,8 @@ class User extends Authenticatable implements CanResetPassword
         'slack',
         'credits',
         'is_admin',
-        'notes'
+        'notes',
+        'is_active'
     ];
 
     /**

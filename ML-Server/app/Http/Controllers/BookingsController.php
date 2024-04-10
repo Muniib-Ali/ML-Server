@@ -152,7 +152,16 @@ class BookingsController extends Controller
         $authstatus = Auth::user();
         $user = $authstatus->id;
         $bookings = $authstatus->bookings;
-        return view('list-bookings', compact('bookings'));
+        $currentTime = Carbon::now();
+        $currentTime = Carbon::now()->format('Y-m-d H:i:s');
+        $filteredUncompleteBookings = $bookings->filter(function ($booking) use ($currentTime) {
+            return $booking->compare_end_date> $currentTime;
+        });
+
+        $filteredCompleteBookings = $bookings->filter(function ($booking) use ($currentTime) {
+            return $booking->compare_end_date< $currentTime;
+        });
+        return view('list-bookings', compact('filteredCompleteBookings', 'filteredUncompleteBookings'));
     }
 
     public function deleteBooking($bookingId)

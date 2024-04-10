@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js" integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <header>
 
 </header>
 
 <body class="guest-layout">
+@if(session('success'))
+        <div class="alert alert-success">
+        {{ session('success') }}
+        </div>
+        @endif
     <div class="registration">
         <form method="POST" action="/createaccount" class="registration-form">
             @csrf

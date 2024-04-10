@@ -28,6 +28,8 @@ class RegistrationController extends Controller
             'credits' => 2000
         ]);
         
+        return redirect()->back()->with('success', 'Registration was successful, please wait for admins to activate your account!');
+        /*
         $credentials = $request->only('slack', 'password');
 
         if (Auth::attempt($credentials)) {
@@ -42,6 +44,7 @@ class RegistrationController extends Controller
 
             }
         } 
+        **/
 
     }
 }

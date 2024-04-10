@@ -28,6 +28,17 @@ class AdminController extends Controller
         return redirect()->intended('/users');
     }
 
+    public function changeActivationStatus($id){
+        $users = User::all();
+        $user = $users->find($id);
+
+        $user->is_active = !$user->is_active;
+        $user ->save();
+
+
+        return redirect()->intended('/users');
+    }
+
 
     public function listRequests(){
         $requests = CreditRequest::all();

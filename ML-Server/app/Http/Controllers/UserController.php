@@ -16,7 +16,9 @@ class UserController extends Controller
         $user = Auth::user();
         CreditRequest::create([
             'user_id' => $user->id,
-            'value' => $request->credits
+            'value' => $request->credits,
+            'name'=> $user->name,
+            'email' => $user->email
         ]);
 
         return redirect()->back()->with('success', 'Credit request has been sent to admins for approval!');

@@ -9,12 +9,14 @@
 </header>
 
 <body>
+
     <div class = "requests-container">
     <table class = "table table-striped table-dark">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>User ID</th>
+                <th>Name</th>
+                <th>Email</th>
                 <th>Amount requested</th>
                 <th>Accept</th>
                 <th>Decline</th>
@@ -26,7 +28,8 @@
             @if($request -> status == "pending")
                 <tr>
                     <td>{{$request-> id}}</td>
-                    <td>{{$request -> user_id}}</td>
+                    <td>{{$request -> name}}</td>
+                    <td>{{$request -> email}}</td>
                     <td>{{$request -> value}}</td>
                     <td>
                         <form action = "requests/change-status/{{$request->id}}/accept" method = "post">
@@ -54,7 +57,8 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>User ID</th>
+                <th>Name</th>
+                <th>Email</th>
                 <th>Amount requested</th>
                 <th>Status</th>
             </tr>
@@ -65,7 +69,8 @@
             @if($request -> status != "pending")
                 <tr>
                     <td>{{$request-> id}}</td>
-                    <td>{{$request -> user_id}}</td>
+                    <td>{{$request -> name}}</td>
+                    <td>{{$request -> email}}</td>
                     <td>{{$request -> value}}</td>
                     <td>{{$request -> status}}</td>
 

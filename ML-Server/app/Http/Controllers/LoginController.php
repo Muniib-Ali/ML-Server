@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\UserActivated;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,13 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
+        $request->validate([
+            'email' => ['required', 'email', new UserActivated],
+            'password' => ['required'],
+        ]);
+        
+
+    
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {

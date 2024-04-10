@@ -69,6 +69,8 @@ Route::middleware(['adminauth'])->group(function(){
     Route::get('/users', [AdminController::class, 'listUsers']);
 
     Route::post('/admin/change-status/{id}', [AdminController::class, 'changeStatus']);
+    Route::post('/admin/change-activation/{id}', [AdminController::class, 'changeActivationStatus']);
+
 
     Route::post('/admin/resource/change-status/{id}', [AdminController::class, 'changeResourceStatus']);
     Route::post('/admin/resource/delete/{id}', [AdminController::class, 'deleteResource']);

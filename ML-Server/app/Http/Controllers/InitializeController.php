@@ -35,7 +35,8 @@ class InitializeController extends Controller
             'slack' => $request->slack,
             'notes' => $request->notes,
             'password' => Hash::make($request->password),
-            'is_admin' => true
+            'is_admin' => true,
+            'is_active' => true
         ]);
         $credentials = $request->only('slack', 'password');
  
