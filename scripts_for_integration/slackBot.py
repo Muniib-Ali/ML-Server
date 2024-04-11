@@ -38,10 +38,10 @@ def kill_pid(pid):
 def kill_by_user(uid):
     os.system(f"sudo pkill -u {str(uid)}")
     
-def add_process_to_terminate(pid, slack_id, user):
+def add_process_to_terminate(pid, slack_id, user, gpu_num):
     timestamp = time.time()
     if pid not in process_to_terminate:
-        process_to_terminate[pid] = {'timestamp': timestamp, 'slack_id': slack_id, 'user': user, 'warnings': 1}
+        process_to_terminate[pid] = {'timestamp': timestamp, 'slack_id': slack_id, 'user': user, 'warnings': 1, 'gpu': gpu_num}
     else:
         timeCheck = timestamp - process_to_terminate[pid]['timestamp']
         if(timeCheck / process_to_terminate[pid]['warnings'] >= TIME_THRESHOLD):
@@ -78,14 +78,15 @@ def terminate_users_and_proccesses(messages_sent):
         current_time = time.time()
         slack_id = data['slack_id']
         timestamp = data['timestamp']
+        gpu_num = data['gpu']
         compare_timestamp = current_time - timestamp
         user = data['user']
             #kill_pid(pid)
         if data['warnings'] > NUMBER_OF_WARNINGS:
-            message = f"Process: {pid} would be killed at this point, however since this is a test run of the system only a warning message is sent"
+            message = f"Your processes on GPU number:{gpu_num} would be killed at this point, however since this is a test run of the system only a warning message is sent"
             post_message(channel=slack_id, text = message, messages=messages_sent )
             for admin_user in admin_users:
-                message = f"Process {pid} by {user} would have been terminated if the system was really implemented for using a GPU without booking it"
+                message = f"All process by {user} on GPU number:{gpu_num} would have been terminated if the system was really implemented for using a GPU without booking it"
                 post_message(channel=admin_user.get('slack'), text=message, messages=messages_sent)
             del process_to_terminate[pid]
         if (compare_timestamp - TIME_THRESHOLD * data['warnings']) > TIME_THRESHOLD:
@@ -196,13 +197,13 @@ while True:
                             post_message(channel=admin_user.get('slack'), text=message, messages=messages_sent)
                         message = f"You are using {RESOURCE_GROUP}'s GPU number: {singleGPU} without having created a booking!"
                         post_message(channel=slack_id, text=message, messages=messages_sent)
-                        add_process_to_terminate(process['pid'], slack_id, process['user'])
+                        add_process_to_terminate(process['pid'], slack_id, process['user'], singleGPU)
 
                 else:
                     for admin_user in admin_users:
                         message = f"User: {process['user']} has not registered on the website and is using GPU number: {singleGPU}"
                         post_message(channel=admin_user.get('slack'), text=message, messages=messages_sent)
-                    add_process_to_terminate(process['pid'], 0, process['user'])
+                    add_process_to_terminate(process['pid'], 0, process['user'], singleGPU)
 
     
     
