@@ -6,5 +6,6 @@
     "minimum_usage": 10,
     "token": "xxxxxxxxxxxx",
     "kill_time": 10,
-    "ab_filter": 0.9
+    "ab_filter": 0.9,
+    "number_of_warnings": 3
 }

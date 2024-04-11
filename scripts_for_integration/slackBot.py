@@ -18,6 +18,7 @@ MINIMUM_USAGE = config["minimum_usage"]
 TOKEN = config["token"]
 ABFILTER = config["ab_filter"]
 KILL_TIME = config["kill_time"]
+NUMBER_OF_WARNINGS = config["number_of_warnings"]
 
 client = slack.WebClient(token=TOKEN)
 
@@ -40,19 +41,29 @@ def kill_by_user(uid):
 def add_process_to_terminate(pid, slack_id, user):
     timestamp = time.time()
     if pid not in process_to_terminate:
-        process_to_terminate[pid] = {'timestamp': timestamp, 'slack_id': slack_id, 'user': user}
+        process_to_terminate[pid] = {'timestamp': timestamp, 'slack_id': slack_id, 'user': user, 'warnings': 1}
+    else:
+        timeCheck = timestamp - process_to_terminate[pid]['timestamp']
+        if(timeCheck / process_to_terminate[pid]['warnings'] >= TIME_THRESHOLD):
+            process_to_terminate[pid]['warnings'] += 1
 
 def add_user_to_terminate(uid, slack_id):
     timestamp = time.time()
     if uid not in users_to_terminate:
-        users_to_terminate[uid] = {'timestamp': timestamp, 'slack_id': slack_id}
+        users_to_terminate[uid] = {'timestamp': timestamp, 'slack_id': slack_id, 'warnings': 1}
+    else:
+        timeCheck = timestamp - users_to_terminate[uid]['timestamp']
+        if(timeCheck / users_to_terminate[uid]['warnings'] >= TIME_THRESHOLD):
+            users_to_terminate[uid]['warnings'] += 1
 
 def terminate_users_and_proccesses(messages_sent):
     for uid, data in list(users_to_terminate.items()):
         current_time = time.time()
         slack_id = data['slack_id']
         timestamp = data['timestamp']
-        if current_time - timestamp >= KILL_TIME:
+        compare_timestamp = current_time - timestamp
+
+        if data['warnings'] > NUMBER_OF_WARNINGS:
             #kill_by_user(uid)
             message = "All user processes would be terminated at this point, however since this is a test run of the system only a warning message is sent"
             post_message(channel=slack_id, text = message, messages=messages_sent )
@@ -60,20 +71,24 @@ def terminate_users_and_proccesses(messages_sent):
                 message = f"User: {uid} would have been terminated if the system was really implemented"
                 post_message(channel=admin_user.get('slack'), text=message, messages=messages_sent)
             del users_to_terminate[uid]
-
+        if (compare_timestamp - TIME_THRESHOLD * data['warnings']) > TIME_THRESHOLD:
+            del users_to_terminate[uid]
 
     for pid, data in list(process_to_terminate.items()):
         current_time = time.time()
         slack_id = data['slack_id']
         timestamp = data['timestamp']
+        compare_timestamp = current_time - timestamp
         user = data['user']
-        if current_time - timestamp >= KILL_TIME:
             #kill_pid(pid)
+        if data['warnings'] > NUMBER_OF_WARNINGS:
             message = f"Process: {pid} would be killed at this point, however since this is a test run of the system only a warning message is sent"
             post_message(channel=slack_id, text = message, messages=messages_sent )
             for admin_user in admin_users:
                 message = f"Process {pid} by {user} would have been terminated if the system was really implemented for using a GPU without booking it"
                 post_message(channel=admin_user.get('slack'), text=message, messages=messages_sent)
+            del process_to_terminate[pid]
+        if (compare_timestamp - TIME_THRESHOLD * data['warnings']) > TIME_THRESHOLD:
             del process_to_terminate[pid]
 
 
