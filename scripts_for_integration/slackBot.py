@@ -65,7 +65,7 @@ def terminate_users_and_proccesses(messages_sent):
 
         if data['warnings'] > NUMBER_OF_WARNINGS:
             #kill_by_user(uid)
-            message = "All user processes would be terminated at this point, however since this is a test run of the system only a warning message is sent"
+            message = "All of your user processes would be terminated at this point, however since this is a test run of the system only a warning message is sent"
             post_message(channel=slack_id, text = message, messages=messages_sent )
             for admin_user in admin_users:
                 message = f"User: {uid} would have been terminated if the system was really implemented"
@@ -83,7 +83,7 @@ def terminate_users_and_proccesses(messages_sent):
         user = data['user']
             #kill_pid(pid)
         if data['warnings'] > NUMBER_OF_WARNINGS:
-            message = f"Your processes on GPU number:{gpu_num} would be killed at this point, however since this is a test run of the system only a warning message is sent"
+            message = f"Your processes on GPU number:{gpu_num} would be terminated at this point, however since this is a test run of the system only a warning message is sent"
             post_message(channel=slack_id, text = message, messages=messages_sent )
             for admin_user in admin_users:
                 message = f"All process by {user} on GPU number:{gpu_num} would have been terminated if the system was really implemented for using a GPU without booking it"
@@ -124,7 +124,6 @@ def post_message(channel=None, text=None, messages=None):
 
 while True:
     messages_sent = discard_old_messages_sent(messages_sent, TIME_THRESHOLD)
-    terminate_users_and_proccesses(messages_sent)
     cpu_data = cpu.main()
     bookings_data = bookings.fetch_bookings()
     users_dict = bookings.fetch_users()
@@ -207,7 +206,8 @@ while True:
 
     
     
-    
+    terminate_users_and_proccesses(messages_sent)
+
     time.sleep(60)
 
 

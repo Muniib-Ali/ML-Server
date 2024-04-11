@@ -12,8 +12,8 @@
     <div class="request">
         <form class="request-form" action="/creditrequest" method="POST">
             @csrf
-            <label for="credits"> How many credits?(1000-1000000): </label>
-            <input type="number" min="1000" max="1000000" placeholder="credits" name="credits">
+            <label for="credits"> How many credits?(1-1000000): </label>
+            <input type="number" min="1" max="1000000" placeholder="credits" name="credits">
             <button type="submit" id = "credit-request-button"> Send Request </button>
 
         </form>

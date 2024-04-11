@@ -85,6 +85,8 @@ Route::middleware(['adminauth'])->group(function(){
     Route::post('/createresourcegroup', [AdminController::class, 'createResourceGroup']);
 
     Route::post('/createresource', [AdminController::class, 'createResource']);
+    Route::post('/clearcredits', [AdminController::class, 'clearCredits']);
+    Route::post('/setcredits', [AdminController::class, 'setCredits']);
 
 
     

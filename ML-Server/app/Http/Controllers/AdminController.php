@@ -145,4 +145,25 @@ class AdminController extends Controller
         Resource::where('id', $id)->delete();
         return redirect()->intended('/resources');
     }
+
+    public function clearCredits(){
+        $users = User::all();
+        foreach ($users as $user) {
+        $user->credits = 0;
+        $user->save();
+        }
+
+        return redirect()->back();
+    }
+
+    public function setCredits(Request $request){
+        $amount = $request->credits;
+        $users = User::all();
+        foreach ($users as $user) {
+            $user->credits = $amount;
+            $user->save();
+        }
+        return redirect()->back();
+
+    }
 }
