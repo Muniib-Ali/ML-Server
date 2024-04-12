@@ -49,3 +49,9 @@ def main():
     usage_dict = {user: {'CPU': value['CPU'], 'MEM': value['MEM']} for user, value in usage.items()}
     return usage_dict
 
+if __name__ == "__main__":
+    usage = get_usage()
+    usage_dict = {user: {'CPU': value['CPU'], 'MEM': value['MEM']} for user, value in usage.items()}
+
+    for user, value in usage.items():
+        print(f"{str(user).ljust(10)}: CPU:{value['CPU']} MEM:{value['MEM']}")

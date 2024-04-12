@@ -50,7 +50,7 @@
             </thead>
             <tbody>
                 @foreach ($requests as $request )
-                @if($request -> status == "pending")
+                @if($request -> status == "Pending")
                 <tr>
                     <td>{{$request-> id}}</td>
                     <td>{{$request -> name}}</td>
@@ -91,7 +91,7 @@
             </thead>
             <tbody>
                 @foreach ($requests as $request )
-                @if($request -> status != "pending")
+                @if($request -> status != "Pending")
                 <tr>
                     <td>{{$request-> id}}</td>
                     <td>{{$request -> name}}</td>

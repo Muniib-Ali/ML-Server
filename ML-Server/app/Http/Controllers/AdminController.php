@@ -58,7 +58,7 @@ class AdminController extends Controller
         $user->credits = $user->credits + $request->value;
         $user->save();
 
-        $request->setAttribute('status', 'approved');
+        $request->setAttribute('status', 'Accepted');
         $request->save();
 
         return redirect()->intended('/requests');
@@ -69,7 +69,7 @@ class AdminController extends Controller
     public function declineRequest($id){
         $requests = CreditRequest::all();
         $request = $requests->find($id);
-        $request->setAttribute('status', 'rejected');
+        $request->setAttribute('status', 'Rejected');
         $request->save();
         return redirect()->intended('/requests');
 
