@@ -7,6 +7,7 @@ use App\Models\CreditRequest;
 use App\Models\Resource;
 use App\Models\ResourceGroup;
 use App\Models\User;
+use App\Rules\UniqueNameInResourceGroup;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -103,7 +104,7 @@ class AdminController extends Controller
             return redirect()->back()->withErrors(['error' => 'Select a valid value']);
         }
         $this->validate($request, [
-            'name' => ['required','string', 'max:255', 'unique:resource']
+            'name' => ['required','string', 'max:255', new UniqueNameInResourceGroup($request->resource_group)]
         ]);
         
         $resource_groups = ResourceGroup::all();
