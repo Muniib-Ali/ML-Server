@@ -186,7 +186,7 @@ while True:
                     hasBooked = False
                     for booking in relevant_bookings:
                         if booking['email'] == email:
-                            if str(singleGPU) in booking['resource_name']:
+                            if str(singleGPU) in booking['resource_name'] and 'CPU' not in booking['resource_name']:
                                 hasBooked = True
                     if hasBooked == True:
                         continue

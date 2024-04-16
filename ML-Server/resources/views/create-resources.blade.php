@@ -32,16 +32,13 @@
                 </select>
                 <input type="text" placeholder="Resource" name="name" required>
 
-                <input type="number" min="0" max="1000" placeholder="Lower threshold(CPU Only)" name="lThreshold">
 
 
-                <input type="number" min="0" max="1000" placeholder="Upper threshold(CPU Only)" name="uThreshold">
+                <input type="number" min="0" max="1000000" placeholder="Upper threshold(CPU Only)" name="uThreshold">
 
 
-                <input type="number" min="0" max="100" placeholder="Number(GPU Only)" name="number">
 
-
-                <input type="number" min="10" max="10000" placeholder="Credit cost(per hour)" name="value" required>
+                <input type="number" min="1" max="100000" placeholder="Credit cost(per hour)" name="value" required>
 
 
 

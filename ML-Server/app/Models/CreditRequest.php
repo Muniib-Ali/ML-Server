@@ -13,7 +13,8 @@ class CreditRequest extends Model
         'value',
         'status',
         'name',
-        'email'
+        'email',
+        'reason'
         
     ];
 }

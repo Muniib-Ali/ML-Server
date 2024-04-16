@@ -357,13 +357,25 @@ select{
     color: white;
 }
 
+#request-reason{
+    background-color: black;
+    color: white;
+    border-radius: 0.2rem;
+    border-style: solid;
+    border-width: 0.15rem;
+
+
+}
+
 #initialization-header{
     display: flex;
     justify-content: center;
+    
 }
 
 #resource-group-label{
     color: white;
+    
 }
 
 

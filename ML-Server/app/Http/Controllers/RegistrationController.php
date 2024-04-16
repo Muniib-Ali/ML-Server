@@ -25,7 +25,7 @@ class RegistrationController extends Controller
             'slack' => $request->slack,
             'notes' => $request->notes,
             'password' => Hash::make($request->password),
-            'credits' => 2000
+            'credits' => 3500
         ]);
         
         return redirect()->back()->with('success', 'Registration was successful, please wait for admins to activate your account!');

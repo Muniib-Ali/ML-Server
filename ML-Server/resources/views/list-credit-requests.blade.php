@@ -39,10 +39,10 @@
         <table class="table table-striped table-dark">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Amount requested</th>
+                    <th>Reason</th>
                     <th>Accept</th>
                     <th>Decline</th>
                 </tr>
@@ -52,10 +52,12 @@
                 @foreach ($requests as $request )
                 @if($request -> status == "Pending")
                 <tr>
-                    <td>{{$request-> id}}</td>
+
                     <td>{{$request -> name}}</td>
                     <td>{{$request -> email}}</td>
                     <td>{{$request -> value}}</td>
+                    <td>{{$request -> reason}}</td>
+
                     <td>
                         <form action="requests/change-status/{{$request->id}}/accept" method="post">
                             @csrf
@@ -81,10 +83,11 @@
         <table class="table table-striped table-dark">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Amount requested</th>
+
+                    <th>Reason</th>
                     <th>Status</th>
                 </tr>
 
@@ -93,10 +96,10 @@
                 @foreach ($requests as $request )
                 @if($request -> status != "Pending")
                 <tr>
-                    <td>{{$request-> id}}</td>
                     <td>{{$request -> name}}</td>
                     <td>{{$request -> email}}</td>
                     <td>{{$request -> value}}</td>
+                    <td>{{$request -> reason}}</td>
                     <td>{{$request -> status}}</td>
 
                 </tr>

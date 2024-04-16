@@ -18,7 +18,8 @@ class UserController extends Controller
             'user_id' => $user->id,
             'value' => $request->credits,
             'name'=> $user->name,
-            'email' => $user->email
+            'email' => $user->email,
+            'reason'=>$request->input('reason')
         ]);
 
         return redirect()->back()->with('success', 'Credit request has been sent to admins for approval!');
