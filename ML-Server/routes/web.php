@@ -87,6 +87,7 @@ Route::middleware(['adminauth'])->group(function(){
     Route::post('/createresource', [AdminController::class, 'createResource']);
     Route::post('/clearcredits', [AdminController::class, 'clearCredits']);
     Route::post('/setcredits', [AdminController::class, 'setCredits']);
+    Route::get('/all-bookings', [AdminController::class, 'showAdminBookings']);
 
 
     

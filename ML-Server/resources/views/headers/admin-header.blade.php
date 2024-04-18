@@ -23,7 +23,7 @@
             <a href="{{url('')}}">Create booking</a>
             <a href="{{url('list-bookings')}}">Bookings</a>
             <a href="{{url('credits')}}">Request credits</a>
-
+            <a href = "{{url('all-bookings')}}">All Bookings</a>
 
             <a href="{{url('users')}}">Users</a>
             <a href="{{url('requests')}}">Requests</a>

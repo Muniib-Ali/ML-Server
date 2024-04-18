@@ -17,7 +17,6 @@ TIME_THRESHOLD = config["time_threshold"]
 MINIMUM_USAGE = config["minimum_usage"]
 TOKEN = config["token"]
 ABFILTER = config["ab_filter"]
-KILL_TIME = config["kill_time"]
 NUMBER_OF_WARNINGS = config["number_of_warnings"]
 
 client = slack.WebClient(token=TOKEN)
@@ -106,7 +105,7 @@ def discard_old_messages_sent(messages, threshold):
     return ret
 
 def post_message(channel=None, text=None, messages=None):
-
+    messageToSend = text[:]
     text = re.sub("([\(]).*?([\)])", "\g<1>\g<2>", text)
 
     if channel is None or text is None or message is None:
@@ -115,7 +114,7 @@ def post_message(channel=None, text=None, messages=None):
         messages[channel] = []
     try:
         if text not in [x['text'] for x in messages[channel]]:
-            client.chat_postMessage(channel=channel, text=text)
+            client.chat_postMessage(channel=channel, text=messageToSend)
             messages[channel].append({'text': text, 'timestamp': time.time()})
     except SlackApiError as e:
         print(f"Error: {e}")
@@ -143,7 +142,7 @@ while True:
             if current_user in USER_MAPPINGS:
                 email = USER_MAPPINGS.get(current_user, None)
                 slack_id = users_dict.get(email)
-                upper_threshold_total=0
+                upper_threshold_total=MINIMUM_USAGE
                 for booking in relevant_bookings:
                     if booking.get('email') == email:
                         upper_threshold_total += booking.get('uThreshold', 0)

@@ -181,13 +181,13 @@ class BookingsController extends Controller
 
         $ongoingBookingsQuery2 = \App\Models\Booking::where('start_date', '=', $currentDateTime->toDateString())
             ->where('end_date', '=', $currentDateTime->toDateString())
-            ->where('start_time', '<', $currentDateTime->hour)
+            ->where('start_time', '<=', $currentDateTime->hour)
             ->where('end_time', '>', $currentDateTime->hour)
             ->get();
 
         $ongoingBookingsQuery3 = \App\Models\Booking::where('start_date', '=', $currentDateTime->toDateString())
             ->where('end_date', '>', $currentDateTime->toDateString())
-            ->where('start_time', '<', $currentDateTime->hour)
+            ->where('start_time', '<=', $currentDateTime->hour)
             ->get();
 
         $ongoingBookingsQuery4 = \App\Models\Booking::where('start_date', '<', $currentDateTime->toDateString())
