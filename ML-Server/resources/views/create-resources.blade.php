@@ -58,6 +58,7 @@
                     <th>Resource Group</th>
                     <th>Resource</th>
                     <th>Cost</th>
+                    <th>Update</th>
                     <th>Change Status</th>
                     <th>Delete</th>
                 </tr>
@@ -69,6 +70,10 @@
                     <td>{{$resource-> resource_group_name}}</td>
                     <td>{{$resource-> name}}</td>
                     <td>{{$resource-> cost}}</td>
+                    <td>
+                        
+                        <a id="update-resource-button" href = "admin/update-resource/{{$resource->id}}">Update </a>
+                    </td>
                     <td>
                         <form action="admin/resource/change-status/{{$resource->id}}" method="post">
                             @csrf

@@ -338,13 +338,30 @@ input{
     border: none;
 }
 
-#credit-request-accept, #activate-account{
+#credit-request-accept, #activate-account, #update-resource-button{
     background-color: darkgreen;
     border-radius: 0.3rem;
     color: white;
     border: none;
     
 }
+
+#update-resource-button{
+    background-color: darkgreen;
+    border-radius: 0.3rem;
+    color: white;
+    border: none;
+    padding: 0.35rem;
+    
+}
+
+#update-resource-button:hover{
+    text-decoration: none;
+}
+
+
+
+
 
 #change-admin-status, #change-resource-status{
     background-color: darkorange;

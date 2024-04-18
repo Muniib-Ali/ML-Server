@@ -88,6 +88,8 @@ Route::middleware(['adminauth'])->group(function(){
     Route::post('/clearcredits', [AdminController::class, 'clearCredits']);
     Route::post('/setcredits', [AdminController::class, 'setCredits']);
     Route::get('/all-bookings', [AdminController::class, 'showAdminBookings']);
+    Route::get('/admin/update-resource/{id}', [AdminController::class, 'showResourceUpdate']);
+    Route::post('admin/update-resource/{id}', [AdminController::class, 'updateResource'])->name('admin.update-resource');
 
 
     
