@@ -122,6 +122,7 @@ def post_message(channel=None, text=None, messages=None):
 
 
 while True:
+    USER_MAPPINGS = config["user_mappings"]
     messages_sent = discard_old_messages_sent(messages_sent, TIME_THRESHOLD)
     cpu_data = cpu.main()
     bookings_data = bookings.fetch_bookings()
@@ -172,8 +173,6 @@ while True:
                     post_message(channel=admin_user.get('slack'), text=message, messages=messages_sent)
                 add_user_to_terminate(current_user, 0)
 
-
-    
     for singleGPU, processes in gpu_data.items():
         for process in processes:
             if process['user'] not in WHITELIST:
